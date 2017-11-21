@@ -33,10 +33,10 @@
         
      <section id="content" class="body">
         <aside id="featured"><article>
-                <h1 class="entry-title"><a href="/datetime.html">datetime</a></h1> 
+                <h1 class="entry-title"><a href="/delhe-la-ji-hui-shou.html">del和垃圾回收</a></h1> 
                 <footer class="post-info">
-                        <abbr class="published" title="2017-06-24T21:30:00+08:00">
-                                Publié le 24/06/2017 &agrave; 21:30
+                        <abbr class="published" title="2017-06-28T20:30:00+08:00">
+                                Publié le 28/06/2017 &agrave; 20:30
                         </abbr>
 
                         <address class="vcard author">
@@ -44,6 +44,146 @@
                         </address>
                 <p>Dans <a href="/category/python.html">python</a>. </p>
 </p>                </footer><!-- /.post-info -->
+                <p>del语句删除名称而不是对象，del命令可能会导致对象被当作垃圾回收，但仅当删除的变量保存的是引</p>
+<p>用对象的最后一个引用，或者无法得到对象时，重新绑定也可能导致对象的引用归零，导致对象被销</p>
+<p>毁。</p>
+<p>如果两个对象相互引用，当它们的引用只存在二者之间时，垃圾回收程序会判定它们都无法获取，进而</p>
+<p>将它们消灭。</p>
+<p>在Cpython中垃圾回收使用的主要算法是引用计数，实际上每个对象都会统计有多少个引用指向自己，</p>
+<p>当引用计数归零时，对象立即被销毁，Cpython会在对象上调用__del__方法（如果定义了），然后释放</p>
+<p>分配给对象的内存。Cpython2.0增加了分代回收方法，用于检测引用循环中涉及的对象组。</p>
+        </article></aside><!-- /#featured -->
+                <h1>Autres articles</h1>
+                <hr />
+                    <ol id="posts-list" class="hfeed">
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/ruo-yin-yong.html" rel="bookmark" title="Permalien vers «弱引用»">弱引用</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>弱引用不会增加对象的引用数量，引用的目标对象称为所指对象，弱引用在缓存应用中很有用，因为我</p>
+<p>们不想仅因为被缓存引用着而始终保存着缓存对象。</p>
+<p>基本的list和dict实例不会做为弱引用的目标，但他们的子类可以，set可以作为弱引用所指对象，int和</p>
+<p>tuple不可以作为弱引用的所指对象，它们的子类也不可以。</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/ruo-yin-yong.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html" rel="bookmark" title="Permalien vers «使用可变类型作为参数的默认值»">使用可变类型作为参数的默认值</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">115</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Bus</span><span class="p">():</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passengers</span><span class="o">=</span><span class="p">[]):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">=</span> <span class="n">passengers</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+     <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">116</span><span class="p">]:</span> <span class="n">bus1</span> <span class="o">=</span> <span class="n">Bus</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">117</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">passengers</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">119</span><span class="p">]:</span> <span class="n">bus1 …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html" rel="bookmark" title="Permalien vers «变量，元祖相对不可变性»">变量，元祖相对不可变性</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>变量是对象的标签，每个变量都有标识，类型和值。变量一旦创建，它的标识不会变，标识可以理解为</p>
+<p>对象在内存地址中的地址，is是比较两个对象的标识，id()函数返回对象标识的整数表示。==运算符比</p>
+<p>较的是两个对象的值。is比==快，因为它不能重载，所以python不用寻找并调用特殊方法，而是直接比</p>
+<p>较两个整数的的ID，而a == b是语法糖，等同于a.<strong>eq</strong>(b).</p>
+<p>元祖的相对不可变性</p>
+<p>元祖的不可变性是指tuple数据结构的物理内容（即保存的引用）不可变，与引用的对象无关。而str，</p>
+<p>bytes和array.array等单一类型序列是扁平的，它们保存的不是引用，而是在连续的内存中，保存数据本</p>
+<p>身（字符，字节和数字）。</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/functoolslru_cache.html" rel="bookmark" title="Permalien vers «functools.lru_cache»">functools.lru_cache</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>functools.lru_cache实现了备忘功能，他把耗时的函数结果保存起来，避免传入相同的参数时重复计</p>
+<p>算。</p>
+<p>斐波拉契数列很耗时，此时用functools.lru_cache最好。</p>
+<p>首先定义一个计时器。然后计算没有用functools.lru_cache的用时的耗时，最后计算用了</p>
+<p>functools.lru_cache的耗时。</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">77</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">78</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">79</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">clock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">arg_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/functoolslru_cache.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/zhuang-shi-qi.html" rel="bookmark" title="Permalien vers «装饰器»">装饰器</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>函数装饰器用于在源码中标记函数，以某种方式增强函数的行为。</p>
+<p>装饰器的特性：</p>
+<div class="highlight"><pre><span></span>1. 能把被装饰的函数替换成其他函数。
+
+2. 装饰器在加载模块时立即执行。
+</pre></div>
+
+
+<p>实现一个简单的装饰器。它会在每次调用被装饰的函数时计时，然后把经过的时间，传入的参数，调用</p>
+<p>的结果打印出来.</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">39</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">44</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">clock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">arg_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%0.8f</span><span class="s1">s] </span><span class="si">%s</span><span class="s1">(</span><span class="si">%s</span><span class="s1">) -&gt; </span><span class="si">%r …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/zhuang-shi-qi.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/datetime.html" rel="bookmark" title="Permalien vers «datetime»">datetime</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
                 <p>&emsp;&emsp;datetime是Python处理日期和时间的标准库。</p>
 <p>获取当前日期和时间</p>
 <p>我们先看如何获取当前日期和时间：</p>
@@ -62,47 +202,10 @@
 <p>&emsp;&emsp;注意到datetime是模块，datetime模块还包含一个datetime类，通过from datetime import datetime</p>
 <p>导入的才是datetime这个类。</p>
 <p>&emsp;&emsp;如果仅导入import datetime，则必须引用全名datetime.datetime。</p>
-<p>&emsp;&emsp;datetime.now()返回当前日期和时间，其类型是datetime</p>
-<p>str转换为datetime</p>
-<p>&emsp;&emsp;很多时候，用户输入的日期和时间是字符串，要处理日期和时间，首先必须把str转换为datetime。</p>
-<p>转换方法是通过datetime.strptime()实现，需要一个日期和时间的格式化字符串：</p>
-<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;2017-05-02 09:10:20&#39;</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-    <span class="mi">2017</span><span class="o">-</span><span class="mo">05</span><span class="o">-</span><span class="mo">02</span> <span class="mi">09</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span>
-</pre></div>
-
-
-<p>datetime转换为str</p>
-<p>&emsp;&emsp;如果已经有了datetime对象，要把它格式化为字符串显示给用户，就需要转换为str，转换方法是通</p>
-<p>过strftime()实现的，同样需要一个日期和时间的格式化字符串：</p>
-<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span>  <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%a, %b </span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">))</span>
-    <span class="n">Fri</span><span class="p">,</span> <span class="n">Jan</span> <span class="mo">02</span> <span class="mi">09</span><span class="p">:</span><span class="mi">10</span>
-</pre></div>
-
-
-<p>datetime加减</p>
-<p>&emsp;&emsp;对日期和时间进行加减实际上就是把datetime往后或往前计算，得到新的datetime。加减可以直接用</p>
-<p>+和-运算符，不过需要导入timedelta这个类：</p>
-<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">d</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="n">d</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">d</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-</pre></div>
-        </article></aside><!-- /#featured -->
-                <h1>Autres articles</h1>
-                <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>&emsp;&emsp;datetime.now()返回当前日期和时间 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/datetime.html">Lire la suite...</a>
+        </article></li>
         
  
         <li><article class="hentry">    
@@ -136,6 +239,44 @@
     <span class="ne">NameError</span>                                 <span class="n">Traceback …</span></pre></div>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/__all__de-zuo-yong.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/bi-bao.html" rel="bookmark" title="Permalien vers «闭包»">闭包</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>闭包指延伸了作用域的函数，其中包含函数体中的引用，但是不在定义体中定义的非全局变量。</p>
+<p>通过以下例子理解一下。</p>
+<p>我们定义一个不断增加系列值的均值。就像下面这样。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="mf">10.0</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="mf">10.5</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="mf">11.0</span>
+</pre></div>
+
+
+<p>可以按如下方式实现：</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Averager</span><span class="p">():</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">avg</span> <span class="o">=</span> <span class="n">Averager</span><span class="p">()</span>
+
+<span class="n">In …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/bi-bao.html">Lire la suite...</a>
         </article></li>
         
  
@@ -527,6 +668,7 @@ Traceback (most recent call last):
                 <div class="widget">
                         <h2>Catégories</h2>
                         <ul>
+                           <li ><a href="/category/git.html">git</a></li>
                            <li class="active"><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
                         </ul>
