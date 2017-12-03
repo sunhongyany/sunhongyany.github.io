@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>序列的修改，散列和切片</title>
+        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
+
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <nav><ul>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+<section id="content" class="body">
+<article>
+        <header> <h1 class="entry-title"><a href="xu-lie-de-xiu-gai-san-lie-he-qie-pian.html"
+        rel="bookmark" title="Permalink to 序列的修改，散列和切片">序列的修改，散列和切片</a></h1>  </header>
+        <div class="entry-content">
+        <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">84</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">85</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">reprlib</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">86</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">87</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">numbers</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">88</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">89</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">operator</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">90</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Vector</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">typecode</span> <span class="o">=</span> <span class="s1">&#39;d&#39;</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_components</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typecode</span><span class="p">,</span> <span class="n">components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">components</span> <span class="o">=</span> <span class="n">reprlib</span><span class="o">.</span><span class="n">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">components</span> <span class="o">=</span> <span class="n">components</span><span class="p">[</span><span class="n">components</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="s1">&#39;Vector({})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="nb">ord</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typecode</span><span class="p">)]))</span> <span class="o">+</span> <span class="nb">bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="nd">@classmethod</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">frombytes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">octets</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">typecode</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">octets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">memv</span> <span class="o">=</span> <span class="n">memoryview</span><span class="p">(</span><span class="n">octets</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">typecode</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">memv</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">Integral</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">else</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;{cls.__name__} indices must be integers&#39;</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msa</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">shortcut_names</span> <span class="o">=</span> <span class="s1">&#39;xyzt&#39;</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">pos</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">shortcut_names</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;{.__name__!r} object has no attribute {!r}&#39;</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">hashes</span> <span class="o">=</span> <span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">xor</span><span class="p">,</span> <span class="n">hashes</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+</pre></div>
+
+
+<p>reprlib.repr这个函数用于生成大型结构或递归结构的安全表示形式，他限制输出字符串长度，用···表示截断部分。</p>
+        </div><!-- /.entry-content -->
+
+</article>
+<footer class="post-info">
+        <abbr class="published" title="2017-08-25T20:30:00+08:00">
+            Publié le 星期五 25 八月 2017 &agrave; 20:30
+        </abbr>
+        <address class="vcard author">
+                Par <a class="url fn" href="#">sunhongyan</a>
+        </address>
+        <p>Dans <a href="/category/python.html">python</a>.
+</p></footer><!-- /.post-info -->
+</section>
+
+        <aside id="sidebar">
+                <div class="widget">
+                        <h2>Catégories</h2>
+                        <ul>
+                           <li ><a href="/category/git.html">git</a></li>
+                           <li class="active"><a href="/category/python.html">python</a></li>
+                           <li ><a href="/category/shell.html">shell</a></li>
+                        </ul>
+                </div>
+        </aside><!-- /#sidebar -->
+
+</body>
+</html>
