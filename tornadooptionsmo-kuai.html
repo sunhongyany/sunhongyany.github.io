@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>tornado.options模块</title>
+        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
+
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <nav><ul>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+<section id="content" class="body">
+<article>
+        <header> <h1 class="entry-title"><a href="tornadooptionsmo-kuai.html"
+        rel="bookmark" title="Permalink to tornado.options模块">tornado.options模块</a></h1>  </header>
+        <div class="entry-content">
+        <p>tornado.options模块——全局参数定义、存储、转换。</p>
+<h3>tornado.options.define()</h3>
+<p>用来定义options选项变量的方法，定义的变量可以在全局的tornado.options.options中获取使用，传入</p>
+<p>参数：</p>
+<ul>
+<li>
+<p>name 选项变量名，须保证全局唯一性，否则会报“Option 'xxx' already defined in ...”的错误；</p>
+</li>
+<li>
+<p>default　选项变量的默认值，如不传默认为None；</p>
+</li>
+<li>
+<p>type 选项变量的类型，从命令行或配置文件导入参数的时候tornado会根据这个类型转换输入的</p>
+</li>
+</ul>
+<p>值，转换不成功时会报错，可以是str、float、int、datetime、timedelta中的某个，若未设置则根据</p>
+<p>default的值自动推断，若default也未设置，那么不再进行转换。可以通过利用设置type类型字段来过滤</p>
+<p>不正确的输入。</p>
+<ul>
+<li>multiple 选项变量的值是否可以为多个，布尔类型，默认值为False，如果multiple为True，那么设</li>
+</ul>
+<p>置选项变量时值与值之间用英文逗号分隔，而选项变量则是一个list列表（若默认值和输入均未设置，则</p>
+<p>为空列表[]）。</p>
+<ul>
+<li>help 选项变量的帮助提示信息，在命令行启动tornado时，通过加入命令行参数 --help　可以查看</li>
+</ul>
+<p>所有选项变量的信息（注意，代码中需要加入tornado.options.parse_command_line()）。</p>
+<h3>tornado.options.options</h3>
+<p>全局的options对象，所有定义的选项变量都会作为该对象的属性。</p>
+<h3>tornado.options.parse_command_line()</h3>
+<p>转换命令行参数，并将转换后的值对应的设置到全局options对象相关属性上。追加命令行参数的方式是--myoption=myvalue</p>
+<p>新建opt.py，我们用代码来看一下如何使用：</p>
+<div class="highlight"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">tornado.web</span>
+<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+<span class="kn">import</span> <span class="nn">tornado.httpserver</span>
+<span class="kn">import</span> <span class="nn">tornado.options</span> <span class="c1"># 新导入的options模块</span>
+
+<span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;run server on the given port.&quot;</span><span class="p">)</span> <span class="c1"># 定义服务器监听端口选项</span>
+<span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="s2">&quot;op&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;op&quot;</span><span class="p">)</span> <span class="c1"># 无意义，演示多值情况</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;主路由处理类&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;对应http的get请求方式&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello python!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">parse_command_line</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">op</span><span class="p">)</span> <span class="c1"># 输出多值选项</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">IndexHandler</span><span class="p">),</span>
+    <span class="p">])</span>
+    <span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+
+<p>执行如下命令开启程序：</p>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python</span> <span class="n">opt</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">9000</span> <span class="o">--</span><span class="n">op</span><span class="o">=</span><span class="n">python</span><span class="p">,</span><span class="n">c</span><span class="o">++</span><span class="p">,</span><span class="n">java</span><span class="p">,</span><span class="n">php</span><span class="p">,</span><span class="n">ios</span>
+</pre></div>
+
+
+<h3>tornado.options.parse_config_file(path)</h3>
+<p>从配置文件导入option，配置文件中的选项格式如下：</p>
+<div class="highlight"><pre><span></span><span class="n">myoption</span> <span class="o">=</span> <span class="s2">&quot;myvalue&quot;</span>
+<span class="n">myotheroption</span> <span class="o">=</span> <span class="s2">&quot;myothervalue&quot;</span>
+</pre></div>
+
+
+<p>我们用代码来看一下如何使用，新建配置文件config，注意字符串和列表按照python的语法格式：</p>
+<p>port = 8000</p>
+<p>op = ["python","c++","java","php","ios"]</p>
+<p>修改opt.py文件：</p>
+<div class="highlight"><pre><span></span><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">tornado.web</span>
+<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
+<span class="kn">import</span> <span class="nn">tornado.httpserver</span>
+<span class="kn">import</span> <span class="nn">tornado.options</span> <span class="c1"># 新导入的options模块</span>
+
+<span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;run server on the given port.&quot;</span><span class="p">)</span> <span class="c1"># 定义服务器监听端口选项</span>
+<span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="s2">&quot;op&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;op&quot;</span><span class="p">)</span> <span class="c1"># 无意义，演示多值情况</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;主路由处理类&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;对应http的get请求方式&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello op!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">parse_config_file</span><span class="p">(</span><span class="s2">&quot;./config&quot;</span><span class="p">)</span> <span class="c1"># 仅仅修改了此处</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">op</span><span class="p">)</span> <span class="c1"># 输出多值选项</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span>
+        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">IndexHandler</span><span class="p">),</span>
+    <span class="p">])</span>
+    <span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>说明</h3>
+<ol>
+<li>日志</li>
+</ol>
+<p>当我们在代码中调用parse_command_line()或者parse_config_file()的方法时，tornado会默认为我们配</p>
+<p>置标准logging模块，即默认开启了日志功能，并向标准输出（屏幕）打印日志信息。</p>
+<ol>
+<li>配置文件</li>
+</ol>
+<p>我们看到在使用prase_config_file()的时候，配置文件的书写格式仍需要按照python的语法要求，其优势</p>
+<p>是可以直接将配置文件的参数转换设置到全局对象tornado.options.options中；然而，其不方便的地方</p>
+<p>在于需要在代码中调用tornado.options.define()来定义选项，而且不支持字典类型，故而在实际应用中</p>
+<p>大都不使用这种方法。</p>
+<p>在使用配置文件的时候，通常会新建一个python文件（如config.py），然后在里面直接定义python类型</p>
+<p>的变量（可以是字典类型）；在需要配置文件参数的地方，将config.py作为模块导入，并使用其中的变</p>
+<p>量参数。</p>
+<p>如config.py文件：</p>
+<div class="highlight"><pre><span></span><span class="c1"># conding:utf-8</span>
+
+<span class="c1"># Redis配置</span>
+<span class="n">redis_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;redis_host&#39;</span><span class="p">:</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;redis_port&#39;</span><span class="p">:</span><span class="mi">6379</span><span class="p">,</span>
+    <span class="s1">&#39;redis_pass&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Tornado app配置</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;template_path&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;templates&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;static_path&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;statics&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;cookie_secret&#39;</span><span class="p">:</span><span class="s1">&#39;0Q1AKOKTQHqaa+N80XhYW7KCGskOUE2snCW06UIxXgI=&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xsrf_cookies&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">,</span>
+    <span class="s1">&#39;login_url&#39;</span><span class="p">:</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;debug&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># 日志</span>
+<span class="n">log_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;logs/log&#39;</span><span class="p">)</span>
+<span class="err">使用</span><span class="n">config</span><span class="o">.</span><span class="n">py</span><span class="err">的模块中导入</span><span class="n">config</span><span class="err">，如下：</span>
+
+<span class="c1"># conding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">tornado.web</span>
+<span class="kn">import</span> <span class="nn">config</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([],</span> <span class="o">**</span><span class="n">config</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+        </div><!-- /.entry-content -->
+
+</article>
+<footer class="post-info">
+        <abbr class="published" title="2017-08-25T10:30:00+08:00">
+            Publié le 星期五 25 八月 2017 &agrave; 10:30
+        </abbr>
+        <address class="vcard author">
+                Par <a class="url fn" href="#">sunhongyan</a>
+        </address>
+        <p>Dans <a href="/category/tornado.html">tornado</a>.
+</p></footer><!-- /.post-info -->
+</section>
+
+        <aside id="sidebar">
+                <div class="widget">
+                        <h2>Catégories</h2>
+                        <ul>
+                           <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/python.html">python</a></li>
+                           <li ><a href="/category/shell.html">shell</a></li>
+                           <li class="active"><a href="/category/tornado.html">tornado</a></li>
+                           <li ><a href="/category/wang-luo.html">网络</a></li>
+                        </ul>
+                </div>
+        </aside><!-- /#sidebar -->
+
+</body>
+</html>
