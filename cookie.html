@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>cookie</title>
+        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
+        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
+
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <nav><ul>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/archives.html">Archives</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+<section id="content" class="body">
+<article>
+        <header> <h1 class="entry-title"><a href="cookie.html"
+        rel="bookmark" title="Permalink to cookie">cookie</a></h1>  </header>
+        <div class="entry-content">
+        <p>设置</p>
+<p>set_cookie(name, value, domain=None, expires=None, path='/', expires_days=None)</p>
+<p>参数说明：</p>
+<p>参数名             说明</p>
+<p>name            cookie名</p>
+<p>value           cookie值</p>
+<p>domain          提交cookie时匹配的域名</p>
+<p>path            提交cookie时匹配的路径</p>
+<p>expires         cookie的有效期，可以是时间戳整数、时间元组或者datetime类型，为UTC时间</p>
+<p>expires_days    cookie的有效期，天数，优先级低于expires</p>
+<p>获取</p>
+<p>get_cookie(name, default=None)</p>
+<p>获取名为name的cookie，可以设置默认值。</p>
+<p>清除</p>
+<p>clear_cookie(name, path='/', domain=None)</p>
+<p>删除名为name，并同时匹配domain和path的cookie。</p>
+<p>clear_all_cookies(path='/', domain=None)</p>
+<p>删除同时匹配domain和path的所有cookie。</p>
+<p>注意：执行清除cookie操作后，并不是立即删除了浏览器中的cookie，而是给cookie值置空，并改变其有效期使其失效。真正的删除cookie是由浏览器去清理的。</p>
+<p>安全Cookie</p>
+<p>Cookie是存储在客户端浏览器中的，很容易被篡改。Tornado提供了一种对Cookie进行简易加密签名的方法来防止Cookie被恶意篡改。</p>
+<p>使用安全Cookie需要为应用配置一个用来给Cookie进行混淆的秘钥cookie_secret，将其传递给Application的构造函数。我们可以使用如下方法来生成一个随机字符串作为cookie_secret的值。</p>
+<p>获取和设置</p>
+<p>set_secure_cookie(name, value, expires_days=30)</p>
+<p>设置一个带签名和时间戳的cookie，防止cookie被伪造。</p>
+<p>get_secure_cookie(name, value=None, max_age_days=31)</p>
+<p>如果cookie存在且验证通过，返回cookie的值，否则返回None。max_age_day不同于expires_days，expires_days是设置浏览器中cookie的有效期，而max_age_day是过滤安全cookie的时间戳。</p>
+        </div><!-- /.entry-content -->
+
+</article>
+<footer class="post-info">
+        <abbr class="published" title="2017-08-27T20:30:00+08:00">
+            Publié le 星期日 27 八月 2017 &agrave; 20:30
+        </abbr>
+        <address class="vcard author">
+                Par <a class="url fn" href="#">sunhongyan</a>
+        </address>
+        <p>Dans <a href="/category/tornado.html">tornado</a>.
+</p></footer><!-- /.post-info -->
+</section>
+
+        <aside id="sidebar">
+                <div class="widget">
+                        <h2>Catégories</h2>
+                        <ul>
+                           <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/javascript.html">JavaScript</a></li>
+                           <li ><a href="/category/python.html">python</a></li>
+                           <li ><a href="/category/shell.html">shell</a></li>
+                           <li class="active"><a href="/category/tornado.html">Tornado</a></li>
+                           <li ><a href="/category/wang-luo.html">网络</a></li>
+                        </ul>
+                </div>
+        </aside><!-- /#sidebar -->
+
+</body>
+</html>

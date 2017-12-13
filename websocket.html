@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>tornado简介</title>
+        <title>WebSocket</title>
         <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -31,24 +31,35 @@
 
 <section id="content" class="body">
 <article>
-        <header> <h1 class="entry-title"><a href="tornadojian-jie.html"
-        rel="bookmark" title="Permalink to tornado简介">tornado简介</a></h1>  </header>
+        <header> <h1 class="entry-title"><a href="websocket.html"
+        rel="bookmark" title="Permalink to WebSocket">WebSocket</a></h1>  </header>
         <div class="entry-content">
-        <p>Tornado全称Tornado Web Server，是一个用Python语言写成的Web服务器兼Web应用框架，由</p>
-<p>FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架在2009年9月以开源软件形</p>
-<p>式开放给大众。</p>
-<p>特点：</p>
-<p>1.作为Web框架，是一个轻量级的Web框架，类似于另一个Python web框架Web.py，其拥有异步非阻</p>
-<p>塞IO的处理方式。</p>
-<p>2.作为Web服务器，Tornado有较为出色的抗负载能力，官方用nginx反向代理的方式部署Tornado和其</p>
-<p>它Python web应用框架进行对比，结果最大浏览量超过第二名近40%。</p>
-<p>性能： Tornado有着优异的性能。它试图解决C10k问题，即处理大于或等于一万的并发.</p>
+        <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
+<p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
+<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
+<p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
+<ol>
+<li>Tornado的WebSocket模块</li>
+</ol>
+<p>Tornado提供支持WebSocket的模块是tornado.websocket，其中提供了一个WebSocketHandler类用来处理通讯。</p>
+<p>WebSocketHandler.open()</p>
+<p>当一个WebSocket连接建立后被调用。</p>
+<p>WebSocketHandler.on_message(message)</p>
+<p>当客户端发送消息message过来时被调用，注意此方法必须被重写。</p>
+<p>WebSocketHandler.on_close()</p>
+<p>当WebSocket连接关闭后被调用。</p>
+<p>WebSocketHandler.write_message(message, binary=False)</p>
+<p>向客户端发送消息messagea，message可以是字符串或字典（字典会被转为json字符串）。若binary为False，则message以utf8编码发送；二进制模式（binary=True）时，可发送任何字节码。</p>
+<p>WebSocketHandler.close()</p>
+<p>关闭WebSocket连接。</p>
+<p>WebSocketHandler.check_origin(origin)</p>
+<p>判断源origin，对于符合条件（返回判断结果为True）的请求源origin允许其连接，否则返回403。可以重写此方法来解决WebSocket的跨域请求（如始终return True）。</p>
         </div><!-- /.entry-content -->
 
 </article>
 <footer class="post-info">
-        <abbr class="published" title="2017-07-14T17:30:00+08:00">
-            Publié le 星期五 14 七月 2017 &agrave; 17:30
+        <abbr class="published" title="2017-09-07T21:30:00+08:00">
+            Publié le 星期四 07 九月 2017 &agrave; 21:30
         </abbr>
         <address class="vcard author">
                 Par <a class="url fn" href="#">sunhongyan</a>

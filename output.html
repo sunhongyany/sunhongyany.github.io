@@ -34,7 +34,170 @@
         <header> <h1 class="entry-title"><a href="output.html"
         rel="bookmark" title="Permalink to Output">Output</a></h1>  </header>
         <div class="entry-content">
-        
+        <ol>
+<li>write(chunk)</li>
+</ol>
+<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
+<p>下面的代码会出现什么效果？</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
+<p>想一想，如何利用write方法写json数据？</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stu</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;zhangsan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+            <span class="s2">&quot;gender&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">stu_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stu_json</span><span class="p">)</span>
+</pre></div>
+
+
+<p>实际上，我们可以不用自己手动去做json序列化，当write方法检测到我们传入的chunk参数是字典类型后，会自动帮我们转换为json字符串。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stu</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;zhangsan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+            <span class="s2">&quot;gender&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
+</pre></div>
+
+
+<p>两种方式有什么差异？</p>
+<p>对比一下两种方式的响应头header中Content-Type字段，自己手动序列化时为Content-Type:text/html; charset=UTF-8，而采用write方法时为Content-Type:application/json; charset=UTF-8。</p>
+<p>write方法除了帮我们将字典转换为json字符串之外，还帮我们将Content-Type设置为application/json; charset=UTF-8。</p>
+<ol>
+<li>set_header(name, value)</li>
+</ol>
+<p>利用set_header(name, value)方法，可以手动设置一个名为name、值为value的响应头header字段。</p>
+<p>用set_header方法来完成上面write所做的工作。</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stu</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;zhangsan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+            <span class="s2">&quot;gender&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">stu_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stu_json</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=UTF-8&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<ol>
+<li>set_default_headers()</li>
+</ol>
+<p>该方法会在进入HTTP处理方法前先被调用，可以重写此方法来预先设置默认的headers。注意：在HTTP处理方法中使用set_header()方法会覆盖掉在set_default_headers()方法中设置的同名header。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_default_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;执行了set_default_headers()&quot;</span><span class="p">)</span>
+        <span class="c1"># 设置get与post方式的默认响应体格式为json</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="s2">&quot;application/json; charset=UTF-8&quot;</span><span class="p">)</span>
+        <span class="c1"># 设置一个名为python、值为python的header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;执行了get()&quot;</span><span class="p">)</span>
+        <span class="n">stu</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;zhangsan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+            <span class="s2">&quot;gender&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">stu_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stu_json</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;i love python&quot;</span><span class="p">)</span> <span class="c1"># 注意此处重写了header中的python字段</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;执行了post()&quot;</span><span class="p">)</span>
+        <span class="n">stu</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;zhangsan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+            <span class="s2">&quot;gender&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">stu_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stu_json</span><span class="p">)</span>
+</pre></div>
+
+
+<ol>
+<li>set_status(status_code, reason=None)</li>
+</ol>
+<p>为响应设置状态码。</p>
+<p>参数说明：</p>
+<p>status_code int类型，状态码，若reason为None，则状态码必须为下表中的。</p>
+<p>reason string类型，描述状态码的词组，若为None，则会被自动填充为下表中的内容。</p>
+<ol>
+<li>redirect(url)</li>
+</ol>
+<p>告知浏览器跳转到url。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;对应/&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;主页&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">LoginHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;对应/login&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;form method=&quot;post&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;登陆&quot;&gt;&lt;/form&gt;&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<ol>
+<li>send_error(status_code=500, **kwargs)</li>
+</ol>
+<p>抛出HTTP错误状态码status_code，默认为500，kwargs为可变命名参数。使用send_error抛出错误后tornado会调用write_error()方法进行处理，并返回给浏览器处理后的错误页面。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;主页&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_error</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;出现404错误&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>注意：默认的write_error()方法不会处理send_error抛出的kwargs参数，即上面的代码中content="出现404错误"是没有意义的。
+使用send_error()方法后就不要再向输出缓冲区写内容了！</p>
+<ol>
+<li>write_error(status_code, **kwargs)</li>
+</ol>
+<p>用来处理send_error抛出的错误信息并返回给浏览器错误信息页面。可以重写此方法来定制自己的错误显示页面。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">err_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="c1"># 注意返回的是unicode字符串，下同</span>
+        <span class="n">err_title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">err_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">err_code</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_error</span><span class="p">(</span><span class="n">err_code</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">err_title</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">err_content</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;主页&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;&lt;h1&gt;出错了，程序员GG正在赶过来！&lt;/h1&gt;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;&lt;p&gt;错误名：</span><span class="si">%s</span><span class="s2">&lt;/p&gt;&quot;</span> <span class="o">%</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;&lt;p&gt;错误详情：</span><span class="si">%s</span><span class="s2">&lt;/p&gt;&quot;</span> <span class="o">%</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
+</pre></div>
         </div><!-- /.entry-content -->
 
 </article>
@@ -54,9 +217,10 @@
                         <h2>Catégories</h2>
                         <ul>
                            <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/javascript.html">JavaScript</a></li>
                            <li ><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
-                           <li class="active"><a href="/category/tornado.html">tornado</a></li>
+                           <li class="active"><a href="/category/tornado.html">Tornado</a></li>
                            <li ><a href="/category/wang-luo.html">网络</a></li>
                         </ul>
                 </div>

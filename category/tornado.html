@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Stay hungry, stay foolish - tornado</title>
+        <title>Stay hungry, stay foolish - Tornado</title>
         <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -33,17 +33,169 @@
         
      <section id="content" class="body">
         <aside id="featured"><article>
-                <h1 class="entry-title"><a href="/input.html">Input</a></h1> 
+                <h1 class="entry-title"><a href="/websocket.html">WebSocket</a></h1> 
                 <footer class="post-info">
-                        <abbr class="published" title="2017-08-26T20:30:00+08:00">
-                                Publié le 26/08/2017 &agrave; 20:30
+                        <abbr class="published" title="2017-09-07T21:30:00+08:00">
+                                Publié le 07/09/2017 &agrave; 21:30
                         </abbr>
 
                         <address class="vcard author">
                                 Par <a class="url fn" href="#">sunhongyan</a>
                         </address>
-                <p>Dans <a href="/category/tornado.html">tornado</a>. </p>
+                <p>Dans <a href="/category/tornado.html">Tornado</a>. </p>
 </p>                </footer><!-- /.post-info -->
+                <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
+<p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
+<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
+<p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
+<ol>
+<li>Tornado的WebSocket模块</li>
+</ol>
+<p>Tornado提供支持WebSocket的模块是tornado.websocket，其中提供了一个WebSocketHandler类用来处理通讯。</p>
+<p>WebSocketHandler.open()</p>
+<p>当一个WebSocket连接建立后被调用。</p>
+<p>WebSocketHandler.on_message(message)</p>
+<p>当客户端发送消息message过来时被调用，注意此方法必须被重写。</p>
+<p>WebSocketHandler.on_close()</p>
+<p>当WebSocket连接关闭后被调用。</p>
+<p>WebSocketHandler.write_message(message, binary=False)</p>
+<p>向客户端发送消息messagea，message可以是字符串或字典（字典会被转为json字符串）。若binary为False，则message以utf8编码发送；二进制模式（binary=True）时，可发送任何字节码。</p>
+<p>WebSocketHandler.close()</p>
+<p>关闭WebSocket连接。</p>
+<p>WebSocketHandler.check_origin(origin)</p>
+<p>判断源origin，对于符合条件（返回判断结果为True）的请求源origin允许其连接，否则返回403。可以重写此方法来解决WebSocket的跨域请求（如始终return True）。</p>
+        </article></aside><!-- /#featured -->
+                <h1>Autres articles</h1>
+                <hr />
+                    <ol id="posts-list" class="hfeed">
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/tornadoyi-bu.html" rel="bookmark" title="Permalien vers «Tornado异步»">Tornado异步</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>因为epoll主要是用来解决网络IO的并发问题，所以Tornado的异步编程也主要体现在网络IO的异步上，即异步Web请求。</p>
+<ol>
+<li>tornado.httpclient.AsyncHTTPClient</li>
+</ol>
+<p>Tornado提供了一个异步Web请求客户端tornado.httpclient.AsyncHTTPClient用来进行异步Web请求。</p>
+<p>fetch(request, callback=None)</p>
+<p>用于执行一个web请求request，并异步返回一个tornado.httpclient.HTTPResponse响应。</p>
+<p>request可以是一个url，也可以是一个tornado.httpclient.HTTPRequest对象。如果是url，fetch会自己构造一个HTTPRequest对象。</p>
+<p>HTTPRequest</p>
+<p>HTTP请求类，HTTPRequest的构造函数可以接收众多构造参数，最常用的如下：</p>
+<ul>
+<li>url (string) – 要访问的url，此参数必传，除此之外均为可选参数</li>
+<li>method (string) – HTTP访问方式，如“GET”或“POST”，默认为GET方式</li>
+<li>headers (HTTPHeaders or dict) – 附加的HTTP协议头</li>
+<li>body – HTTP请求的请求体</li>
+</ul>
+<p>HTTPResponse</p>
+<p>HTTP响应类，其常用属性如下 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/tornadoyi-bu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/yong-hu-yan-zheng.html" rel="bookmark" title="Permalien vers «用户验证»">用户验证</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>用户验证是指在收到用户请求后进行处理前先判断用户的认证状态（如登陆状态），若通过验证则正常处理，否则强制用户跳转至认证页面（如登陆页面）。</p>
+<p>authenticated装饰器</p>
+<p>为了使用Tornado的认证功能，我们需要对登录用户标记具体的处理函数。我们可以使用@tornado.web.authenticated装饰器完成它。当我们使用这个装饰器包裹一个处理方法时，Tornado将确保这个方法的主体只有在合法的用户被发现时才会调用。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="nd">@tornado.web.authenticated</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;这是我的个人主页。&quot;</span><span class="p">)</span>
+<span class="n">get_current_user</span><span class="p">()</span><span class="err">方法</span>
+</pre></div>
+
+
+<p>装饰器@tornado.web.authenticated的判断执行依赖于请求处理类中的self.current_user属性，如果current_user值为假（None、False、0、""等），任何GET或HEAD请求都将把访客重定向到应用设置中login_url指定的URL，而非法用户的POST请求将返回一个带有403（Forbidden）状态的HTTP响应。</p>
+<p>在获取self.current_user属性的时候，tornado会调用get_current_user()方法来返回current_user的值。也就是说，我们验证用户的逻辑应写在get_current_user()方法中，若该方法返回非假值则验证通过 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/yong-hu-yan-zheng.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/cookie.html" rel="bookmark" title="Permalien vers «cookie»">cookie</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>设置</p>
+<p>set_cookie(name, value, domain=None, expires=None, path='/', expires_days=None)</p>
+<p>参数说明：</p>
+<p>参数名             说明</p>
+<p>name            cookie名</p>
+<p>value           cookie值</p>
+<p>domain          提交cookie时匹配的域名</p>
+<p>path            提交cookie时匹配的路径</p>
+<p>expires         cookie的有效期，可以是时间戳整数、时间元组或者datetime类型，为UTC时间</p>
+<p>expires_days    cookie的有效期，天数，优先级低于expires</p>
+<p>获取</p>
+<p>get_cookie(name, default=None)</p>
+<p>获取名为name的cookie，可以设置默认值。</p>
+<p>清除</p>
+<p>clear_cookie(name, path='/', domain=None)</p>
+<p>删除名为name，并同时匹配domain和path的cookie。</p>
+<p>clear_all_cookies(path='/', domain=None …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/cookie.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/jie-kou-yu-diao-yong-shun-xu.html" rel="bookmark" title="Permalien vers «接口与调用顺序»">接口与调用顺序</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <ol>
+<li>initialize()</li>
+</ol>
+<p>对应每个请求的处理类Handler在构造一个实例后首先执行initialize()方法。路由映射中的第三个字典型参数会作为该方法的命名参数传递，如：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/user/(.*)&#39;</span><span class="p">,</span> <span class="n">ProfileHandler</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)),</span>
+    <span class="p">])</span>
+</pre></div>
+
+
+<ol>
+<li>prepare()</li>
+</ol>
+<p>预处理，即在执行对应请求方式的HTTP方法（如get、post等）前先执行，注意：不论以何种HTTP方式请求，都会执行prepare()方法。</p>
+<ol>
+<li>
+<p>HTTP方法</p>
+<p>get      请求指定的页面信息，并返回实体主体。</p>
+<p>head     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</p>
+<p>post     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。</p>
+<p>POST请求可能会导致新的资源的建立和/或已有资源的修改 …</p></li></ol>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/jie-kou-yu-diao-yong-shun-xu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/input.html" rel="bookmark" title="Permalien vers «Input»">Input</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
                 <p>利用HTTP协议向服务器传参有几种途径？</p>
 <ol>
 <li>查询字符串（query string)，形如key1=value1&amp;key2=value2；</li>
@@ -59,115 +211,16 @@
 </li>
 </ol>
 <p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
-<p>default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
-<p>strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
+<p>&emsp;&emsp;default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
+<p>&emsp;&emsp;strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
 <div class="highlight"><pre><span></span>get_query_arguments(name, strip=True)
 </pre></div>
 
 
-<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，注意返回的是list列表（即使对应name参数只有一个值）。若未找到name参数，则返回空列表[]。</p>
-<p>&emsp;&emsp;strip同前，不再赘述。</p>
-<ol>
-<li>
-<p>获取请求体参数</p>
-<p>get_body_argument(name, default=_ARG_DEFAULT, strip=True)</p>
-</li>
-</ol>
-<p>&emsp;&emsp;从请求体中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
-<p>&emsp;&emsp;default与strip同前，不再赘述。</p>
-<div class="highlight"><pre><span></span>get_body_arguments(name, strip=True)
-</pre></div>
-
-
-<p>&emsp;&emsp;从请求体中返回指定参数name的值，注意返回的是list列表（即使对应name参数只有一个值）。若未找到name参数，则返回空列表[].</p>
-<p>&emsp;&emsp;strip同前，不再赘述。</p>
-<p>说明</p>
-<p>&emsp;&emsp;对于请求体中的数据要求为字符串，且格式为表单编码格式（与url中的请求字符串格式相同），即key1=value1&amp;key2=value2，HTTP报文头Header中的"Content-Type"为application/x-www-form-urlencoded 或 multipart/form-data。对于请求体数据为json或xml的，无法通过这两个方法获取。</p>
-<ol>
-<li>
-<p>前两类方法的整合</p>
-<p>get_argument(name, default=_ARG_DEFAULT, strip=True)</p>
-</li>
-</ol>
-<p>&emsp;&emsp;从请求体和查询字符串中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
-<p>&emsp;&emsp;default与strip同前，不再赘述。</p>
-<div class="highlight"><pre><span></span>get_arguments(name, strip=True)
-</pre></div>
-
-
-<p>&emsp;&emsp;从请求体和查询字符串中返回指定参数name的值，注意返回的是list列表（即使对应name参数只有一个值）。若未找到name参数，则返回空列表[]。</p>
-<p>&emsp;&emsp;strip同前，不再赘述。</p>
-<p>说明</p>
-<p>对于请求体中数据的要求同前。 这两个方法最常用。</p>
-<p>注意：以上方法返回的都是unicode字符串</p>
-<ol>
-<li>关于请求的其他信息</li>
-</ol>
-<p>RequestHandler.request 对象存储了关于请求的相关信息，具体属性有：</p>
-<div class="highlight"><pre><span></span>method HTTP的请求方式，如GET或POST;
-host 被请求的主机名；
-uri 请求的完整资源标示，包括路径和查询字符串；
-path 请求的路径部分；
-query 请求的查询字符串部分；
-version 使用的HTTP版本；
-headers 请求的协议头，是类字典型的对象，支持关键字索引的方式获取特定协议头信息，例如：request.headers[&quot;Content-Type&quot;]
-body 请求体数据；
-remote_ip 客户端的IP地址；
-files 用户上传的文件，为字典类型，型如：
-{
-  &quot;form_filename1&quot;:[&lt;tornado.httputil.HTTPFile&gt;, &lt;tornado.httputil.HTTPFile&gt;],
-  &quot;form_filename2&quot;:[&lt;tornado.httputil.HTTPFile&gt;,],
-  ...
-}
-tornado.httputil.HTTPFile是接收到的文件对象，它有三个属性：
-filename 文件的实际名字，与form_filename1不同，字典中的键名代表的是表单对应项的名字；
-body 文件的数据实体；
-content_type 文件的类型。 这三个对象属性可以像字典一样支持关键字索引，如request.files[&quot;form_filename1&quot;][0][&quot;body&quot;]。
-</pre></div>
-
-
-<ol>
-<li>正则提取uri</li>
-</ol>
-<p>&emsp;&emsp;tornado中对于路由映射也支持正则提取uri，提取出来的参数会作为RequestHandler中对应请求方式的成员方法参数。若在正则表达式中定义了名字，则参数按名传递；若未定义名字，则参数按顺序传递。提取出来的参数会作为对应请求方式的成员方法的参数。</p>
-<div class="highlight"><pre><span></span><span class="c1"># coding:utf-8</span>
-
-<span class="kn">import</span> <span class="nn">tornado.web</span>
-<span class="kn">import</span> <span class="nn">tornado.ioloop</span>
-<span class="kn">import</span> <span class="nn">tornado.httpserver</span>
-<span class="kn">import</span> <span class="nn">tornado.options</span>
-<span class="kn">from</span> <span class="nn">tornado.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">define</span>
-<span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span>
-
-<span class="n">define</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;run server on the given port.&quot;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello itcast.&quot;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">SubjectCityHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s2">&quot;Subject: </span><span class="si">%s</span><span class="s2">&lt;br/&gt;City: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">city</span><span class="p">)))</span>
-
-<span class="k">class</span> <span class="nc">SubjectDateHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">subject</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s2">&quot;Date: </span><span class="si">%s</span><span class="s2">&lt;br/&gt;Subject: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">subject</span><span class="p">)))</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">tornado</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">parse_command_line</span><span class="p">()</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span>
-        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">IndexHandler</span><span class="p">),</span>
-        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/sub-city/(.+)/([a-z]+)&quot;</span><span class="p">,</span> <span class="n">SubjectCityHandler</span><span class="p">),</span> <span class="c1"># 无名方式</span>
-        <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/sub-date/(?P&lt;subject&gt;.+)/(?P&lt;date&gt;\d+)&quot;</span><span class="p">,</span> <span class="n">SubjectDateHandler</span><span class="p">),</span> <span class="c1">#　命名方式</span>
-    <span class="p">])</span>
-    <span class="n">http_server</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">httpserver</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-    <span class="n">http_server</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-    <span class="n">tornado</span><span class="o">.</span><span class="n">ioloop</span><span class="o">.</span><span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</pre></div>
-        </article></aside><!-- /#featured -->
-                <h1>Autres articles</h1>
-                <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，注意返回的是list列表 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/input.html">Lire la suite...</a>
+        </article></li>
         
  
         <li><article class="hentry">    
@@ -176,7 +229,32 @@ content_type 文件的类型。 这三个对象属性可以像字典一样支持
                 </header>
                 
                 <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                
+                <ol>
+<li>write(chunk)</li>
+</ol>
+<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
+<p>下面的代码会出现什么效果？</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
+<p>想一想，如何利用write方法写json数据？</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get …</span></pre></div>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/output.html">Lire la suite...</a>
         </article></li>
@@ -276,9 +354,10 @@ content_type 文件的类型。 这三个对象属性可以像字典一样支持
                         <h2>Catégories</h2>
                         <ul>
                            <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/javascript.html">JavaScript</a></li>
                            <li ><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
-                           <li class="active"><a href="/category/tornado.html">tornado</a></li>
+                           <li class="active"><a href="/category/tornado.html">Tornado</a></li>
                            <li ><a href="/category/wang-luo.html">网络</a></li>
                         </ul>
                 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>变量，元祖相对不可变性</title>
+        <title>this参数</title>
         <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -31,28 +31,21 @@
 
 <section id="content" class="body">
 <article>
-        <header> <h1 class="entry-title"><a href="bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html"
-        rel="bookmark" title="Permalink to 变量，元祖相对不可变性">变量，元祖相对不可变性</a></h1>  </header>
+        <header> <h1 class="entry-title"><a href="thiscan-shu.html"
+        rel="bookmark" title="Permalink to this参数">this参数</a></h1>  </header>
         <div class="entry-content">
-        <p>变量是对象的标签，每个变量都有标识，类型和值。变量一旦创建，它的标识不会变，标识可以理解为</p>
-<p>对象在内存地址中的地址，is是比较两个对象的标识，id()函数返回对象标识的整数表示。==运算符比</p>
-<p>较的是两个对象的值。is比==快，因为它不能重载，所以python不用寻找并调用特殊方法，而是直接比</p>
-<p>较两个整数的的ID，而a == b是语法糖，等同于a.<strong>eq</strong>(b).</p>
-<p>元祖的相对不可变性</p>
-<p>元祖的不可变性是指tuple数据结构的物理内容（即保存的引用）不可变，与引用的对象无关。而str，</p>
-<p>bytes和array.array等单一类型序列是扁平的，它们保存的不是引用，而是在连续的内存中，保存数据本</p>
-<p>身（字符，字节和数字）。</p>
+        <p>this参数指向一个与此次函数调用相关联的对象，该对象称为函数上下文。</p>
         </div><!-- /.entry-content -->
 
 </article>
 <footer class="post-info">
-        <abbr class="published" title="2017-06-25T20:30:00+08:00">
-            Publié le 星期日 25 六月 2017 &agrave; 20:30
+        <abbr class="published" title="2017-09-06T20:30:00+08:00">
+            Publié le 星期三 06 九月 2017 &agrave; 20:30
         </abbr>
         <address class="vcard author">
                 Par <a class="url fn" href="#">sunhongyan</a>
         </address>
-        <p>Dans <a href="/category/python.html">python</a>.
+        <p>Dans <a href="/category/javascript.html">JavaScript</a>.
 </p></footer><!-- /.post-info -->
 </section>
 
@@ -61,8 +54,8 @@
                         <h2>Catégories</h2>
                         <ul>
                            <li ><a href="/category/git.html">git</a></li>
-                           <li ><a href="/category/javascript.html">JavaScript</a></li>
-                           <li class="active"><a href="/category/python.html">python</a></li>
+                           <li class="active"><a href="/category/javascript.html">JavaScript</a></li>
+                           <li ><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
                            <li ><a href="/category/tornado.html">Tornado</a></li>
                            <li ><a href="/category/wang-luo.html">网络</a></li>

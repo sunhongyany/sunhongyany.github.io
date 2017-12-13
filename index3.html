@@ -69,6 +69,302 @@
  
         <li><article class="hentry">    
                 <header>
+                        <h1><a href="/websocket.html" rel="bookmark" title="Permalien vers «WebSocket»">WebSocket</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
+<p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
+<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
+<p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
+<ol>
+<li>Tornado的WebSocket模块</li>
+</ol>
+<p>Tornado提供支持WebSocket的模块是tornado.websocket，其中提供了一个WebSocketHandler类用来处理通讯。</p>
+<p>WebSocketHandler.open()</p>
+<p>当一个WebSocket连接建立后被调用。</p>
+<p>WebSocketHandler.on_message(message)</p>
+<p>当客户端发送消息message过来时被调用，注意此方法必须被重写。</p>
+<p>WebSocketHandler.on_close()</p>
+<p>当WebSocket连接关闭后被调用。</p>
+<p>WebSocketHandler.write_message(message …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/websocket.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/jszhong-ge-chong-diao-yong-fang-shi.html" rel="bookmark" title="Permalien vers «js中各种调用方式»">js中各种调用方式</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <ol>
+<li>作为函数调用</li>
+</ol>
+<p>如果函数不是以方法，构造函数或通过apply(),call()调用，那么它只能作为一个函数被调用：</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">add</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">};</span>
+<span class="nx">sub</span><span class="p">();</span>
+</pre></div>
+
+
+<p>当以这种模式调用时，this被绑定在全局对象上。</p>
+<ol>
+<li>作为方法被调用</li>
+</ol>
+<p>方法是作为对象属性的函数。对于方法来说，this被绑定在方法被调用时所在的对象上。</p>
+<div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">title</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">function</span> <span class="nx">testF</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testF</span><span class="p">());</span>
+<span class="kd">var</span> <span class="nx">testFCopy</span> <span class="o">=</span> <span class="nx">testF</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testFCopy</span><span class="p">());</span>
+<span class="kd">var</span> <span class="nx">testObj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">testObjFunc</span><span class="o">:</span> <span class="nx">testF</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testObj …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/jszhong-ge-chong-diao-yong-fang-shi.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/tornadoyi-bu.html" rel="bookmark" title="Permalien vers «Tornado异步»">Tornado异步</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>因为epoll主要是用来解决网络IO的并发问题，所以Tornado的异步编程也主要体现在网络IO的异步上，即异步Web请求。</p>
+<ol>
+<li>tornado.httpclient.AsyncHTTPClient</li>
+</ol>
+<p>Tornado提供了一个异步Web请求客户端tornado.httpclient.AsyncHTTPClient用来进行异步Web请求。</p>
+<p>fetch(request, callback=None)</p>
+<p>用于执行一个web请求request，并异步返回一个tornado.httpclient.HTTPResponse响应。</p>
+<p>request可以是一个url，也可以是一个tornado.httpclient.HTTPRequest对象。如果是url，fetch会自己构造一个HTTPRequest对象。</p>
+<p>HTTPRequest</p>
+<p>HTTP请求类，HTTPRequest的构造函数可以接收众多构造参数，最常用的如下：</p>
+<ul>
+<li>url (string) – 要访问的url，此参数必传，除此之外均为可选参数</li>
+<li>method (string) – HTTP访问方式，如“GET”或“POST”，默认为GET方式</li>
+<li>headers (HTTPHeaders or dict) – 附加的HTTP协议头</li>
+<li>body – HTTP请求的请求体</li>
+</ul>
+<p>HTTPResponse</p>
+<p>HTTP响应类，其常用属性如下 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/tornadoyi-bu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/argumentscan-shu.html" rel="bookmark" title="Permalien vers «arguments参数»">arguments参数</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>arguments参数是传递给函数的所有参数的集合。这个集合有个名为length的属性，它包含了参数的个数。</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>    <span class="c1">// 打印出10</span>
+</pre></div>
+
+
+<p>arguments类似数组，可以用下面的方法将其转化成数组：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/argumentscan-shu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/thiscan-shu.html" rel="bookmark" title="Permalien vers «this参数»">this参数</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>this参数指向一个与此次函数调用相关联的对象，该对象称为函数上下文。</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/thiscan-shu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html" rel="bookmark" title="Permalien vers «函数作用域与块作用域»">函数作用域与块作用域</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>JS变量以函数作为作用域。</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">bar</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>JS没有块作用域的概念，ES6引入了关键字let，可以用于生成传统的块作用域。</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// b是该代码块的局部变量</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>    <span class="c1">// ReferenceError </span>
+</pre></div>
+
+
+<p>思考下面代码将会输出什么？</p>
+<div class="highlight"><pre><span></span><span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</pre></div>
+
+
+<p>将会输出1，原因是在JS中声明会被提升，但是赋值和其他可执行的逻辑依然保留在原位置，上面的代码片段实际是这样执行的：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/javascriptbiao-zhun-lei-xing.html" rel="bookmark" title="Permalien vers «JavaScript标准类型»">JavaScript标准类型</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>JavaScript支持以下标准类型:</p>
+<ul>
+<li>Number(数值)</li>
+<li>String(字符串)</li>
+<li>Boolean(布尔)</li>
+<li>Symbol(ES6中的新类型，符号)</li>
+<li>Object(对象)<ul>
+<li>Function(函数)</li>
+<li>Array(数组)</li>
+<li>Date(日期)</li>
+<li>RegExp(正则表达式)</li>
+</ul>
+</li>
+<li>Null(空)</li>
+<li>Undefined(未定义)</li>
+</ul>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/javascriptbiao-zhun-lei-xing.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/yong-hu-yan-zheng.html" rel="bookmark" title="Permalien vers «用户验证»">用户验证</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>用户验证是指在收到用户请求后进行处理前先判断用户的认证状态（如登陆状态），若通过验证则正常处理，否则强制用户跳转至认证页面（如登陆页面）。</p>
+<p>authenticated装饰器</p>
+<p>为了使用Tornado的认证功能，我们需要对登录用户标记具体的处理函数。我们可以使用@tornado.web.authenticated装饰器完成它。当我们使用这个装饰器包裹一个处理方法时，Tornado将确保这个方法的主体只有在合法的用户被发现时才会调用。</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="nd">@tornado.web.authenticated</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;这是我的个人主页。&quot;</span><span class="p">)</span>
+<span class="n">get_current_user</span><span class="p">()</span><span class="err">方法</span>
+</pre></div>
+
+
+<p>装饰器@tornado.web.authenticated的判断执行依赖于请求处理类中的self.current_user属性，如果current_user值为假（None、False、0、""等），任何GET或HEAD请求都将把访客重定向到应用设置中login_url指定的URL，而非法用户的POST请求将返回一个带有403（Forbidden）状态的HTTP响应。</p>
+<p>在获取self.current_user属性的时候，tornado会调用get_current_user()方法来返回current_user的值。也就是说，我们验证用户的逻辑应写在get_current_user()方法中，若该方法返回非假值则验证通过 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/yong-hu-yan-zheng.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/cookie.html" rel="bookmark" title="Permalien vers «cookie»">cookie</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>设置</p>
+<p>set_cookie(name, value, domain=None, expires=None, path='/', expires_days=None)</p>
+<p>参数说明：</p>
+<p>参数名             说明</p>
+<p>name            cookie名</p>
+<p>value           cookie值</p>
+<p>domain          提交cookie时匹配的域名</p>
+<p>path            提交cookie时匹配的路径</p>
+<p>expires         cookie的有效期，可以是时间戳整数、时间元组或者datetime类型，为UTC时间</p>
+<p>expires_days    cookie的有效期，天数，优先级低于expires</p>
+<p>获取</p>
+<p>get_cookie(name, default=None)</p>
+<p>获取名为name的cookie，可以设置默认值。</p>
+<p>清除</p>
+<p>clear_cookie(name, path='/', domain=None)</p>
+<p>删除名为name，并同时匹配domain和path的cookie。</p>
+<p>clear_all_cookies(path='/', domain=None …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/cookie.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/jie-kou-yu-diao-yong-shun-xu.html" rel="bookmark" title="Permalien vers «接口与调用顺序»">接口与调用顺序</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <ol>
+<li>initialize()</li>
+</ol>
+<p>对应每个请求的处理类Handler在构造一个实例后首先执行initialize()方法。路由映射中的第三个字典型参数会作为该方法的命名参数传递，如：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/user/(.*)&#39;</span><span class="p">,</span> <span class="n">ProfileHandler</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)),</span>
+    <span class="p">])</span>
+</pre></div>
+
+
+<ol>
+<li>prepare()</li>
+</ol>
+<p>预处理，即在执行对应请求方式的HTTP方法（如get、post等）前先执行，注意：不论以何种HTTP方式请求，都会执行prepare()方法。</p>
+<ol>
+<li>
+<p>HTTP方法</p>
+<p>get      请求指定的页面信息，并返回实体主体。</p>
+<p>head     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</p>
+<p>post     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。</p>
+<p>POST请求可能会导致新的资源的建立和/或已有资源的修改 …</p></li></ol>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/jie-kou-yu-diao-yong-shun-xu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
                         <h1><a href="/input.html" rel="bookmark" title="Permalien vers «Input»">Input</a></h1>
                 </header>
                 
@@ -88,8 +384,8 @@
 </li>
 </ol>
 <p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
-<p>default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
-<p>strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
+<p>&emsp;&emsp;default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
+<p>&emsp;&emsp;strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
 <div class="highlight"><pre><span></span>get_query_arguments(name, strip=True)
 </pre></div>
 
@@ -135,7 +431,32 @@
                 </header>
                 
                 <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                
+                <ol>
+<li>write(chunk)</li>
+</ol>
+<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
+<p>下面的代码会出现什么效果？</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
+<p>想一想，如何利用write方法写json数据？</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get …</span></pre></div>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/output.html">Lire la suite...</a>
         </article></li>
@@ -274,6 +595,22 @@
 <div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">python</span> <span class="n">hello …</span></pre></div>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/chu-shi-tornado.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/unittestmock-mockdui-xiang-ku.html" rel="bookmark" title="Permalien vers «unittest.mock - mock对象库»">unittest.mock - mock对象库</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>unittest.mock 是一个用于在Python中测试的库。它允许您使用模拟对象替换测试中的系统部件，并对其使用方式进行断言。</p>
+<p>unittest.mock 提供了一个核心 Mock 类，无需在整个测试套件中创建一个主机的存根。执行一个动作后，你可以断言使用了哪些方法/属性以及调用它们的参数。您还可以以正常方式指定返回值并设置所需的属性。</p>
+<p>另外，mock提供了一个 patch() 装饰器，用于处理测试范围内的修补模块和类级别属性，以及用于创建唯一对象的 sentinel。有关如何使用 Mock，MagicMock 和 patch() 的一些示例，请参阅 quick guide。</p>
+<p>Mock非常容易使用，并且设计用于 unittest。 Mock基于“action - &gt; assertion”模式，而不是许多模拟框架使用的“record - &gt; replay”。</p>
+<p>对于早期版本的Python，有一个 unittest.mock 的反向端口，可以作为 模拟PyPI。</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/unittestmock-mockdui-xiang-ku.html">Lire la suite...</a>
         </article></li>
         
  
@@ -1045,9 +1382,10 @@ Traceback (most recent call last):
                         <h2>Catégories</h2>
                         <ul>
                            <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/javascript.html">JavaScript</a></li>
                            <li ><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
-                           <li ><a href="/category/tornado.html">tornado</a></li>
+                           <li ><a href="/category/tornado.html">Tornado</a></li>
                            <li ><a href="/category/wang-luo.html">网络</a></li>
                         </ul>
                 </div>
