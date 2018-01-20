@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>弱引用</title>
+        <title>urllib中的quote函数</title>
         <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -31,19 +31,26 @@
 
 <section id="content" class="body">
 <article>
-        <header> <h1 class="entry-title"><a href="ruo-yin-yong.html"
-        rel="bookmark" title="Permalink to 弱引用">弱引用</a></h1>  </header>
+        <header> <h1 class="entry-title"><a href="urllibzhong-de-quotehan-shu.html"
+        rel="bookmark" title="Permalink to urllib中的quote函数">urllib中的quote函数</a></h1>  </header>
         <div class="entry-content">
-        <p>弱引用不会增加对象的引用数量，引用的目标对象称为所指对象，弱引用在缓存应用中很有用，因为我</p>
-<p>们不想仅因为被缓存引用着而始终保存着缓存对象。</p>
-<p>基本的list和dict实例不会做为弱引用的目标，但他们的子类可以，set可以作为弱引用所指对象，int和</p>
-<p>tuple不可以作为弱引用的所指对象，它们的子类也不可以。</p>
+        <p>urllib.parse.quote(text)</p>
+<p>按照标准， URL 只允许一部分 ASCII 字符（数字字母和部分符号），其他的字符（如汉字）是不符合 URL 标准的。所以 URL 中使用其他字符就需要进行 URL 编码。URL 中传参数的部分（query String），格式是：name1=value1&amp;name2=value2&amp;name3=value3 </p>
+<p>假如你的 name 或者 value 值中有『&amp;』或者『=』等符号，就当然会有问题。所以URL中的参数字符串也需要把『&amp;=』等符号进行编码。URL编码的方式是把需要编码的字符转化为 %xx 的形式。通常 URL 编码是基于 UTF-8 的（当然这和浏览器平台有关）。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">parse</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">query</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;walker&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="s1">&#39;name=walker&amp;age=99&#39;</span>
+</pre></div>
         </div><!-- /.entry-content -->
 
 </article>
 <footer class="post-info">
-        <abbr class="published" title="2017-06-28T20:30:00+08:00">
-            Publié le 星期三 28 六月 2017 &agrave; 20:30
+        <abbr class="published" title="2017-09-19T19:30:00+08:00">
+            Publié le 星期二 19 九月 2017 &agrave; 19:30
         </abbr>
         <address class="vcard author">
                 Par <a class="url fn" href="#">sunhongyan</a>

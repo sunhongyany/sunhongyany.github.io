@@ -69,6 +69,48 @@
  
         <li><article class="hentry">    
                 <header>
+                        <h1><a href="/urllibzhong-de-quotehan-shu.html" rel="bookmark" title="Permalien vers «urllib中的quote函数»">urllib中的quote函数</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>urllib.parse.quote(text)</p>
+<p>按照标准， URL 只允许一部分 ASCII 字符（数字字母和部分符号），其他的字符（如汉字）是不符合 URL 标准的。所以 URL 中使用其他字符就需要进行 URL 编码。URL 中传参数的部分（query String），格式是：name1=value1&amp;name2=value2&amp;name3=value3 </p>
+<p>假如你的 name 或者 value 值中有『&amp;』或者『=』等符号，就当然会有问题。所以URL中的参数字符串也需要把『&amp;=』等符号进行编码。URL编码的方式是把需要编码的字符转化为 %xx 的形式。通常 URL 编码是基于 UTF-8 的（当然这和浏览器平台有关 …</p>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/urllibzhong-de-quotehan-shu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html" rel="bookmark" title="Permalien vers «实例属性和原型属性»">实例属性和原型属性</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <p>利用函数作用域来实现类的效果。</p>
+<ol>
+<li>可以在函数中使用关键字var声明私有变量，它们可以由私有函数和特权方法访问。</li>
+<li>可以在对象的构造函数中声明私有函数，并由特权方法调用。</li>
+<li>特权方法可以使用this.method = function(){}.</li>
+<li>公共方法可以使用Class.prototype.method = function(){}来声明。</li>
+<li>公共属性可以使用this.prototype来声明，能够对外部访问。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sport</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">country</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">noOfPlayers</span><span class="o">++</span><span class="p">;</span>
+    <span class="c1">// 私有属性和函数，只能由特权对象浏览，编辑或调用。</span>
+    <span class="kd">var</span> <span class="nx">retirementAge</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">playerAge</span> <span class="o">=</span> <span class="nx">age</span><span class="o">?</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">PlayerSport</span> <span class="o">=</span> <span class="nx">sport</span><span class="o">?</span> <span class="nx">sport</span><span class="o">:</span> <span class="s2">&quot;Un&quot;</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">isAvailable</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">available</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">playerAge</span> <span class="o">&lt;</span> <span class="nx">retirementAge …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
                         <h1><a href="/websocket.html" rel="bookmark" title="Permalien vers «WebSocket»">WebSocket</a></h1>
                 </header>
                 
@@ -269,6 +311,45 @@
 </ul>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/javascriptbiao-zhun-lei-xing.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/jsbi-bao.html" rel="bookmark" title="Permalien vers «js闭包»">js闭包</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">outer</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">copy</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">OuterFn</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">InnerFn</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inner</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">outer</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">copy</span> <span class="o">=</span> <span class="nx">InnerFn</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">OuterFn</span><span class="p">();</span>
+<span class="nx">copy</span><span class="p">();</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">outer</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">copy</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">OuterFn</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">InnerFn</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inner</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">outer</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">magic</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">copy</span> <span class="o">=</span> <span class="nx">InnerFn</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console …</span></pre></div>
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/jsbi-bao.html">Lire la suite...</a>
         </article></li>
         
  
@@ -609,6 +690,10 @@
 <p>另外，mock提供了一个 patch() 装饰器，用于处理测试范围内的修补模块和类级别属性，以及用于创建唯一对象的 sentinel。有关如何使用 Mock，MagicMock 和 patch() 的一些示例，请参阅 quick guide。</p>
 <p>Mock非常容易使用，并且设计用于 unittest。 Mock基于“action - &gt; assertion”模式，而不是许多模拟框架使用的“record - &gt; replay”。</p>
 <p>对于早期版本的Python，有一个 unittest.mock 的反向端口，可以作为 模拟PyPI。</p>
+<ol>
+<li>Mock类</li>
+</ol>
+<p>class …</p>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/unittestmock-mockdui-xiang-ku.html">Lire la suite...</a>
         </article></li>
@@ -823,6 +908,18 @@
 <p>• 可以使用标准的 glob …</p>
                 </div><!-- /.entry-content -->
                 <a class="readmore" href="/gitji-chu.html">Lire la suite...</a>
+        </article></li>
+        
+ 
+        <li><article class="hentry">    
+                <header>
+                        <h1><a href="/mian-xiang-dui-xiang-de-javascript.html" rel="bookmark" title="Permalien vers «面向对象的JavaScript»">面向对象的JavaScript</a></h1>
+                </header>
+                
+                <div class="entry-content" style="max-height: 169px; overflow: hidden">
+                
+                </div><!-- /.entry-content -->
+                <a class="readmore" href="/mian-xiang-dui-xiang-de-javascript.html">Lire la suite...</a>
         </article></li>
         
  
@@ -1383,6 +1480,7 @@ Traceback (most recent call last):
                         <ul>
                            <li ><a href="/category/git.html">git</a></li>
                            <li ><a href="/category/javascript.html">JavaScript</a></li>
+                           <li ><a href="/category/js.html">JS</a></li>
                            <li ><a href="/category/python.html">python</a></li>
                            <li ><a href="/category/shell.html">shell</a></li>
                            <li ><a href="/category/tornado.html">Tornado</a></li>
