@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Stay hungry, stay foolish - Review</title>
+        <title>Stay hungry, stay foolish - Pelican</title>
         <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
@@ -24,8 +24,12 @@
         <header id="banner" class="body">
                 <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
                 <nav><ul>
+                    <li><a href="/archives.html">archives</a></li>
+                    <li><a href="accueil.html">Accueil</a></li>
+                    <li><a href="about-me.html">about me</a></li>
                 <li><a href="/index.html">Accueil</a></li>
                 <li><a href="/archives.html">Archives</a></li>
+                    (Undefined, '==========')
                 </ul></nav>
         </header><!-- /#banner -->
 
@@ -33,18 +37,30 @@
         
      <section id="content" class="body">
         <aside id="featured"><article>
-                <h1 class="entry-title"><a href="/my-first-review.html">My First Review</a></h1> 
+                <h1 class="entry-title"><a href="/pelicanzi-dong-fa-bu-wang-zhan.html">Pelican自动发布网站</a></h1> 
                 <footer class="post-info">
-                        <abbr class="published" title="2010-12-03T10:20:00+08:00">
-                                Publié le 03/12/2010 &agrave; 10:20
+                        <abbr class="published" title="2017-05-19T20:30:00+08:00">
+                                Publié le 19/05/2017 &agrave; 20:30
                         </abbr>
 
                         <address class="vcard author">
                                 Par <a class="url fn" href="#">sunhongyan</a>
                         </address>
-                <p>Dans <a href="/category/review.html">Review</a>. </p>
+                <p>Dans <a href="/category/pelican.html">Pelican</a>. </p>
 </p>                </footer><!-- /.post-info -->
-                <p>Following is a review of my favorite mechanical keyboard.</p>
+                <ol>
+<li>使用make生成网站
+    make html</li>
+<li>使用make生成站点
+    make publish</li>
+<li>如果想自动侦测本地改变，使用下面的命令
+    make regenerate
+在你的浏览器中输入http://localhost:8000/，就可以预览。</li>
+<li>通常，你需要运行make regenenrate 和 make serve 在两个不同的终端, 但可以用一个命令实现。
+    make devserver</li>
+<li>发布文章
+    make rsync_upload</li>
+</ol>
         </article></aside><!-- /#featured -->
 </ol><!-- /#posts-list -->
 </section><!-- /#content -->
@@ -53,8 +69,14 @@
                 <div class="widget">
                         <h2>Catégories</h2>
                         <ul>
+                           <li ><a href="/category/git.html">git</a></li>
+                           <li ><a href="/category/javascript.html">JavaScript</a></li>
+                           <li ><a href="/category/js.html">JS</a></li>
+                           <li class="active"><a href="/category/pelican.html">Pelican</a></li>
                            <li ><a href="/category/python.html">python</a></li>
-                           <li class="active"><a href="/category/review.html">Review</a></li>
+                           <li ><a href="/category/shell.html">shell</a></li>
+                           <li ><a href="/category/tornado.html">Tornado</a></li>
+                           <li ><a href="/category/wang-luo.html">网络</a></li>
                         </ul>
                 </div>
         </aside><!-- /#sidebar -->

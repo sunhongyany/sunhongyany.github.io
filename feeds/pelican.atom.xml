@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Stay hungry, stay foolish - Pelican</title><link href="me/" rel="alternate"></link><link href="me/feeds/pelican.atom.xml" rel="self"></link><id>me/</id><updated>2017-05-19T20:30:00+08:00</updated><entry><title>Pelican自动发布网站</title><link href="me/pelicanzi-dong-fa-bu-wang-zhan.html" rel="alternate"></link><published>2017-05-19T20:30:00+08:00</published><updated>2017-05-19T20:30:00+08:00</updated><author><name>sunhongyan</name></author><id>tag:None,2017-05-19:me/pelicanzi-dong-fa-bu-wang-zhan.html</id><summary type="html">&lt;ol&gt;
+&lt;li&gt;使用make生成网站
+    make html&lt;/li&gt;
+&lt;li&gt;使用make生成站点
+    make publish&lt;/li&gt;
+&lt;li&gt;如果想自动侦测本地改变，使用下面的命令
+    make regenerate
+在你的浏览器中输入http://localhost:8000/，就可以预览。&lt;/li&gt;
+&lt;li&gt;通常，你需要运行make regenenrate 和 make serve 在两个不同的终端, 但可以用一个命令实现。
+    make devserver&lt;/li&gt;
+&lt;li&gt;发布文章
+    make rsync_upload&lt;/li&gt;
+&lt;/ol&gt;</summary><content type="html">&lt;ol&gt;
+&lt;li&gt;使用make生成网站
+    make html&lt;/li&gt;
+&lt;li&gt;使用make生成站点
+    make publish&lt;/li&gt;
+&lt;li&gt;如果想自动侦测本地改变，使用下面的命令
+    make regenerate
+在你的浏览器中输入http://localhost:8000/，就可以预览。&lt;/li&gt;
+&lt;li&gt;通常，你需要运行make regenenrate 和 make serve 在两个不同的终端, 但可以用一个命令实现。
+    make devserver&lt;/li&gt;
+&lt;li&gt;发布文章
+    make rsync_upload&lt;/li&gt;
+&lt;/ol&gt;</content></entry></feed>
