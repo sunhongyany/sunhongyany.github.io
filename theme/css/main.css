@@ -218,13 +218,10 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	Featured
 *****************/
 #content {
-	background: #fff;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-    float: left;
-    margin: 1em 10px 2em 7%;
-	background: #fff;
+    margin: 1em 0 2em 17em;
 	overflow: hidden;
 	padding: 20px 20px;
 	min-width: 600px;
