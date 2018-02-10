@@ -1,162 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-        <title>Stay hungry, stay foolish - JavaScript</title>
-        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
-
-
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
-                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
-
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
-
+        <title>Stay hungry, stay foolish - JavaScript</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <h1><a href="/">Stay hungry, stay foolish </a></h1>
                 <nav><ul>
-                    <li><a href="/archives.html">archives</a></li>
-                    <li><a href="accueil.html">Accueil</a></li>
-                    <li><a href="about-me.html">about me</a></li>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/archives.html">Archives</a></li>
+                    <li><a href="/archives.html">文章归档</a></li>
+                    <li><a href="/category.html">文章分类</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
-        
-        
-     <section id="content" class="body">
-        <aside id="featured"><article>
-                <h1 class="entry-title"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a></h1> 
-                <footer class="post-info">
-                        <abbr class="published" title="2017-09-07T20:30:00+08:00">
-                                Publié le 07/09/2017 &agrave; 20:30
-                        </abbr>
-
-                        <address class="vcard author">
-                                Par <a class="url fn" href="#">sunhongyan</a>
-                        </address>
-                <p>Dans <a href="/category/javascript.html">JavaScript</a>. </p>
-</p>                </footer><!-- /.post-info -->
-                <ol>
-<li>作为函数调用</li>
-</ol>
-<p>如果函数不是以方法，构造函数或通过apply(),call()调用，那么它只能作为一个函数被调用：</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{}</span>
-<span class="nx">add</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">};</span>
-<span class="nx">sub</span><span class="p">();</span>
-</pre></div>
-
-
-<p>当以这种模式调用时，this被绑定在全局对象上。</p>
-<ol>
-<li>作为方法被调用</li>
-</ol>
-<p>方法是作为对象属性的函数。对于方法来说，this被绑定在方法被调用时所在的对象上。</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">title</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">function</span> <span class="nx">testF</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testF</span><span class="p">());</span>
-<span class="kd">var</span> <span class="nx">testFCopy</span> <span class="o">=</span> <span class="nx">testF</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testFCopy</span><span class="p">());</span>
-<span class="kd">var</span> <span class="nx">testObj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">testObjFunc</span><span class="o">:</span> <span class="nx">testF</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testObj</span><span class="p">.</span><span class="nx">testObjFunc</span><span class="p">());</span>
-<span class="o">&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="err">/head&gt;</span>
-<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="err">/body&gt;</span>
-<span class="o">&lt;</span><span class="err">/html&gt;</span>
-</pre></div>
-
-
-<p><img alt="Alt Text" src="/images/call.png"></p>
-<p>前两次调用都是函数调用，因此this指向的是全局上下文，最后是方法调用，this看到的是函数上下文。</p>
-<ol>
-<li>作为构造函数被调用</li>
-</ol>
-<p>this会被绑定到新建的对象上。</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">albert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Albert&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">albert</span><span class="p">.</span><span class="nx">greet</span><span class="p">());</span>
-</pre></div>
-
-
-<ol>
-<li>通过apply()和call()方法调用</li>
-</ol>
-        </article></aside><!-- /#featured -->
-                <h1>Autres articles</h1>
-                <hr />
-                    <ol id="posts-list" class="hfeed">
-        
- 
-        <li><article class="hentry">    
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="2">
+            <li><article class="hentry">
                 <header>
-                        <h1><a href="/argumentscan-shu.html" rel="bookmark" title="Permalien vers «arguments参数»">arguments参数</a></h1>
+                    <h1><a href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html" rel="bookmark"
+                           title="Permalink to 函数作用域与块作用域">函数作用域与块作用域</a></h1>
                 </header>
-                
-                <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                <p>arguments参数是传递给函数的所有参数的集合。这个集合有个名为length的属性，它包含了参数的个数。</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>    <span class="c1">// 打印出10</span>
-</pre></div>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-09-05T20:30:00+08:00">
+                Published: 二 05 九月 2017
+        </abbr>
 
 
-<p>arguments类似数组，可以用下面的方法将其转化成数组：</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-</pre></div>
-                </div><!-- /.entry-content -->
-                <a class="readmore" href="/argumentscan-shu.html">Lire la suite...</a>
-        </article></li>
-        
- 
-        <li><article class="hentry">    
-                <header>
-                        <h1><a href="/thiscan-shu.html" rel="bookmark" title="Permalien vers «this参数»">this参数</a></h1>
-                </header>
-                
-                <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                <p>this参数指向一个与此次函数调用相关联的对象，该对象称为函数上下文。</p>
-                </div><!-- /.entry-content -->
-                <a class="readmore" href="/thiscan-shu.html">Lire la suite...</a>
-        </article></li>
-        
- 
-        <li><article class="hentry">    
-                <header>
-                        <h1><a href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html" rel="bookmark" title="Permalien vers «函数作用域与块作用域»">函数作用域与块作用域</a></h1>
-                </header>
-                
-                <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                <p>JS变量以函数作为作用域。</p>
+</footer><!-- /.post-info -->                <p>JS变量以函数作为作用域。</p>
 <div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
@@ -188,18 +62,24 @@
 <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
 <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log …</span></pre></div>
+                <a class="readmore" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">read more</a>
                 </div><!-- /.entry-content -->
-                <a class="readmore" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">Lire la suite...</a>
-        </article></li>
-        
- 
-        <li><article class="hentry">    
+            </article></li>
+
+            <li><article class="hentry">
                 <header>
-                        <h1><a href="/javascriptbiao-zhun-lei-xing.html" rel="bookmark" title="Permalien vers «JavaScript标准类型»">JavaScript标准类型</a></h1>
+                    <h1><a href="/javascriptbiao-zhun-lei-xing.html" rel="bookmark"
+                           title="Permalink to JavaScript标准类型">JavaScript标准类型</a></h1>
                 </header>
-                
-                <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                <p>JavaScript支持以下标准类型:</p>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-09-05T20:30:00+08:00">
+                Published: 二 05 九月 2017
+        </abbr>
+
+
+</footer><!-- /.post-info -->                <p>JavaScript支持以下标准类型:</p>
 <ul>
 <li>Number(数值)</li>
 <li>String(字符串)</li>
@@ -215,23 +95,35 @@
 <li>Null(空)</li>
 <li>Undefined(未定义)</li>
 </ul>
+                <a class="readmore" href="/javascriptbiao-zhun-lei-xing.html">read more</a>
                 </div><!-- /.entry-content -->
-                <a class="readmore" href="/javascriptbiao-zhun-lei-xing.html">Lire la suite...</a>
-        </article></li>
-        
- 
-        <li><article class="hentry">    
+            </article></li>
+
+            <li><article class="hentry">
                 <header>
-                        <h1><a href="/mian-xiang-dui-xiang-de-javascript.html" rel="bookmark" title="Permalien vers «面向对象的JavaScript»">面向对象的JavaScript</a></h1>
+                    <h1><a href="/mian-xiang-dui-xiang-de-javascript.html" rel="bookmark"
+                           title="Permalink to 面向对象的JavaScript">面向对象的JavaScript</a></h1>
                 </header>
-                
-                <div class="entry-content" style="max-height: 169px; overflow: hidden">
-                
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-06-25T20:30:00+08:00">
+                Published: 日 25 六月 2017
+        </abbr>
+
+
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/mian-xiang-dui-xiang-de-javascript.html">read more</a>
                 </div><!-- /.entry-content -->
-                <a class="readmore" href="/mian-xiang-dui-xiang-de-javascript.html">Lire la suite...</a>
-        </article></li>
-</ol><!-- /#posts-list -->
-</section><!-- /#content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="/category/javascript.html">&laquo;</a>
+    Page 2 / 2
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
 </body>
 </html>

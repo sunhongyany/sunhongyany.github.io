@@ -1,43 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-        <title>unittest.mock - mock对象库</title>
-        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
-
-
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
-                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
-
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
-
+        <title>unittest.mock - mock对象库</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <h1><a href="/">Stay hungry, stay foolish </a></h1>
                 <nav><ul>
-                    <li><a href="/archives.html">archives</a></li>
-                    <li><a href="accueil.html">Accueil</a></li>
-                    <li><a href="about-me.html">about me</a></li>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/archives.html">Archives</a></li>
+                    <li><a href="/archives.html">文章归档</a></li>
+                    <li><a href="/category.html">文章分类</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-
 <section id="content" class="body">
-<article>
-        <header> <h1 class="entry-title"><a href="unittestmock-mockdui-xiang-ku.html"
-        rel="bookmark" title="Permalink to unittest.mock - mock对象库">unittest.mock - mock对象库</a></h1>  </header>
-        <div class="entry-content">
-        <p>unittest.mock 是一个用于在Python中测试的库。它允许您使用模拟对象替换测试中的系统部件，并对其使用方式进行断言。</p>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/unittestmock-mockdui-xiang-ku.html" rel="bookmark"
+           title="Permalink to unittest.mock - mock对象库">unittest.mock - mock对象库</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-08-05T20:30:00+08:00">
+                Published: 六 05 八月 2017
+        </abbr>
+
+
+</footer><!-- /.post-info -->      <p>unittest.mock 是一个用于在Python中测试的库。它允许您使用模拟对象替换测试中的系统部件，并对其使用方式进行断言。</p>
 <p>unittest.mock 提供了一个核心 Mock 类，无需在整个测试套件中创建一个主机的存根。执行一个动作后，你可以断言使用了哪些方法/属性以及调用它们的参数。您还可以以正常方式指定返回值并设置所需的属性。</p>
 <p>另外，mock提供了一个 patch() 装饰器，用于处理测试范围内的修补模块和类级别属性，以及用于创建唯一对象的 sentinel。有关如何使用 Mock，MagicMock 和 patch() 的一些示例，请参阅 quick guide。</p>
 <p>Mock非常容易使用，并且设计用于 unittest。 Mock基于“action - &gt; assertion”模式，而不是许多模拟框架使用的“record - &gt; replay”。</p>
@@ -85,19 +77,12 @@
 <p>new_callable允许你指定一个不同的类，或者可调用对象，将会被调用以创建new对象。默认使用MagicMock。</p>
 <p>autospec是spec更有力的一种形式，如果设置autospec=True，那么将会使用要替换的对象的spec创建模拟。这次模拟的所有属性和被替换的对象的属性有相应属性的规范。被模拟的方法和函数会检查他们的参数，如果他们被错误的签名调用将会引发TypeError。对于替换类的模拟，他们的返回值将会和这个类有相同的规范。</p>
 <p>如果</p>
-        </div><!-- /.entry-content -->
+    </div><!-- /.entry-content -->
 
-</article>
-<footer class="post-info">
-        <abbr class="published" title="2017-08-05T20:30:00+08:00">
-            Publié le 星期六 05 八月 2017 &agrave; 20:30
-        </abbr>
-        <address class="vcard author">
-                Par <a class="url fn" href="#">sunhongyan</a>
-        </address>
-        <p>Dans <a href="/category/python.html">python</a>.
-</p></footer><!-- /.post-info -->
+  </article>
 </section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
 </body>
 </html>

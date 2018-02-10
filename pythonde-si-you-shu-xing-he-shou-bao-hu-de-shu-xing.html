@@ -1,62 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-        <title>python的私有属性和受保护的属性</title>
-        <link rel="icon" href="/theme/images/icons/application_file_python_128px_6585_easyicon.net.ico" type="text/css" />
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="/theme/css/main.css" type="text/css" />
-        <link href="/" type="application/atom+xml" rel="alternate" title="Stay hungry, stay foolish Flux ATOM" />
-
-
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
-                <script src="/js/IE8.js" type="text/javascript"></script><![endif]-->
-
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="/css/ie6.css"/><![endif]-->
-
+        <title>python的私有属性和受保护的属性</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/index.html">Stay hungry, stay foolish </a></h1>
+                <h1><a href="/">Stay hungry, stay foolish </a></h1>
                 <nav><ul>
-                    <li><a href="/archives.html">archives</a></li>
-                    <li><a href="accueil.html">Accueil</a></li>
-                    <li><a href="about-me.html">about me</a></li>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/archives.html">Archives</a></li>
+                    <li><a href="/archives.html">文章归档</a></li>
+                    <li><a href="/category.html">文章分类</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
-
 <section id="content" class="body">
-<article>
-        <header> <h1 class="entry-title"><a href="pythonde-si-you-shu-xing-he-shou-bao-hu-de-shu-xing.html"
-        rel="bookmark" title="Permalink to python的私有属性和受保护的属性">python的私有属性和受保护的属性</a></h1>  </header>
-        <div class="entry-content">
-        <p>编写一个dog类，这个类的内部用到了mood实例属性，但没有将其开放，现在如果创建一个dog子类</p>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/pythonde-si-you-shu-xing-he-shou-bao-hu-de-shu-xing.html" rel="bookmark"
+           title="Permalink to python的私有属性和受保护的属性">python的私有属性和受保护的属性</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-07-25T20:30:00+08:00">
+                Published: 二 25 七月 2017
+        </abbr>
+
+
+</footer><!-- /.post-info -->      <p>编写一个dog类，这个类的内部用到了mood实例属性，但没有将其开放，现在如果创建一个dog子类</p>
 <p>beagle，里面也定义mood实例属性，就会将父类的实例属性mood覆盖。为了避免这种情况，如果以</p>
 <p>__mood的形式命名实例属性，python会把属性名存入实例的__dict__中而且会在前面加一个下划线和</p>
 <p>类名，因此对dog类来说， __mood会变成_dog__mood;对beagle来说就会变成_beagle__mood，这个语</p>
 <p>言特性叫做改写。</p>
 <p>在模块中，顶层名称使用一个前导下划线，对from 模块名 import *来说，不会导入，但可以用from 模块</p>
 <p>名 import 私有属性 导入</p>
-        </div><!-- /.entry-content -->
+    </div><!-- /.entry-content -->
 
-</article>
-<footer class="post-info">
-        <abbr class="published" title="2017-07-25T20:30:00+08:00">
-            Publié le 星期二 25 七月 2017 &agrave; 20:30
-        </abbr>
-        <address class="vcard author">
-                Par <a class="url fn" href="#">sunhongyan</a>
-        </address>
-        <p>Dans <a href="/category/python.html">python</a>.
-</p></footer><!-- /.post-info -->
+  </article>
 </section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
 
 </body>
 </html>
