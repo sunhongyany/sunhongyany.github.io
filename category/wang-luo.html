@@ -1,49 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-        <meta charset="utf-8" />
-        <title>Stay hungry, stay foolish - 网络</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="description" content="Stay hungry, stay foolish" />
+    <title>
+网络 | 日迹    </title>
+    <link rel="stylesheet" type="text/css" href="/maupassant-pelican/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/maupassant-pelican/static/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/maupassant-pelican/static/fav.ico" />
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Stay hungry, stay foolish </a></h1>
-                <nav><ul>
-                    <li><a href="/archives.html">文章归档</a></li>
-                    <li><a href="/category.html">文章分类</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<body>
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <a id="logo" href="/."> 日迹 </a>
+            <p class="description"> Stay hungry, stay foolish </p>
+        </div>
+        <div id="nav-menu">
+            <a href="/"><i class="fa fa-home"> 首页</i></a>
+            <a href="/archives.html"><i class="fa fa-archive"> 文章归档</i></a>
+        </div>
+    </div>
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post"><div class="post-archive">
+<h1 class="label-title">Articles in <em>网络</em></h1>
+<ul class="listing">
+    <li><span class="date">2017/12/06</span><a href="/etag.html">ETag</a></li>
+</ul>
+</div></div>
+        </div></div>
+        <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
+<div class="widget">
+    <form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form">
+        <input type="text" name="q" maxlength="20" placeholder="Search"/>
+        <input type="hidden" name="sitesearch" value=""/>
+    </form>
+</div><div class="widget">
+    <div class="widget-title">
+        <i class="fa fa-folder-o"> Categories</i>
+    </div>
+    <ul class="category-list">
+        <li class="category-list-item"><a class="category-list-link" href="/category/git.html">git</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/javascript.html">JavaScript</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/js.html">JS</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/pelican.html">Pelican</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/python.html">python</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
+    </ul>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
+    <div class="tagcloud">
+    </div>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
+    <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/etag.html">ETag</a>
+        </li>
+    </ul>
+</div>        </div></div>
+        <div class="pure-u-1 pure-u-md-3-4">
+<div id="footer">Copyright © 2017 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+    </div>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/etag.html">ETag</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2017-12-06T20:30:00+08:00">
-                Published: 三 06 十二月 2017
-        </abbr>
-
-
-</footer><!-- /.post-info --><p>ETag 是 Entity Tag 的缩写，中文译过来就是实体标签的意思。在HTTP1.1协议中其实就是请求HEAD中</p>
-<p>的一个属性而已。</p>
-<p><img alt="Alt Text" src="/images/ETag.png"></p>
-<p>ETag是HTTP1.1中才加入的一个属性，用来帮助服务器控制Web端的缓存验证。它的原理是这样的，当</p>
-<p>浏览器请求服务器的某项资源(A)时, 服务器根据A算出一个哈希值("5a24f26f-72")并通过 ETag 返回给浏</p>
-<p>览器，浏览器把"5a24f26f-72" 和 A 同时缓存在本地，当下次再次向服务器请求A时，会通过类似 </p>
-<p>If-None-Match: "5a24f26f-72" 的请求头把ETag发送给服务器，服务器再次计算A的哈希值并和浏览器返</p>
-<p>回的值做比较，如果发现A发生了变化就把A返回给浏览器(200)，如果发现A没有变化就给浏览器返回一</p>
-<p>个304未修改。这样通过控制浏览器端的缓存，可以节省服务器的带宽，因为服务器不需要每次都把全</p>
-<p>量数据返回给客户端。</p>
-<p>注：HTTP中并没有指定如何生成ETag，哈希是比较理想的选择。</p>
-<p>通常情况下，ETag更类似于资源指纹(fingerprints)，如果资源发生变化了就会生成一个新的指纹，这样</p>
-<p>可以快速的比较资源的变化。在服务器端实现中，很多情况下并不会用哈希来计算ETag，这会严重浪费</p>
-<p>服务器端资源，很多网站默认是禁用ETag的。有些情况下，可以把ETag退化，比如通过资源的版本或者</p>
-<p>修改时间来生成ETag。</p>
-<p>如果通过资源修改时间来生成ETag，那么效果和HTTP协议里面的另外一个控制属性(Last-Modified)就雷</p>
-<p>同了，使用 Last-Modified 的问题在于它的精度在秒(s)的级别，比较适合不太敏感的静态资源。</p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-        </section><!-- /#extras -->
+<a id="rocket" href="#top" class="show"></a>
+<script type="text/javascript" src="/theme/js/totop.js" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script>
+<script type="text/javascript" src="/theme/js/fancybox.js" async></script>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" />
 
 </body>
-</html>

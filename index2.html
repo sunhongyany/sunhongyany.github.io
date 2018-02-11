@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-        <meta charset="utf-8" />
-        <title>Stay hungry, stay foolish</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="description" content="Stay hungry, stay foolish" />
+    <title>
+    日迹    </title>
+    <link rel="stylesheet" type="text/css" href="/maupassant-pelican/static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/maupassant-pelican/static/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/maupassant-pelican/static/fav.ico" />
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Stay hungry, stay foolish </a></h1>
-                <nav><ul>
-                    <li><a href="/archives.html">文章归档</a></li>
-                    <li><a href="/category.html">文章分类</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-                <section id="content" class="body">
-                    <ol id="posts-list" class="hfeed" start="2">
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html" rel="bookmark"
-                           title="Permalink to 实例属性和原型属性">实例属性和原型属性</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-09-09T19:30:00+08:00">
-                Published: 六 09 九月 2017
-        </abbr>
-
-
-</footer><!-- /.post-info -->                <p>利用函数作用域来实现类的效果。</p>
+<body>
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <a id="logo" href="/."> 日迹 </a>
+            <p class="description"> Stay hungry, stay foolish </p>
+        </div>
+        <div id="nav-menu">
+            <a href="/"><i class="fa fa-home"> 首页</i></a>
+            <a href="/archives.html"><i class="fa fa-archive"> 文章归档</i></a>
+        </div>
+    </div>
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a></h1>
+    <div class="post-meta">2017-09-09</div>
+    <div class="post-content">
+        <p>利用函数作用域来实现类的效果。</p>
 <ol>
 <li>可以在函数中使用关键字var声明私有变量，它们可以由私有函数和特权方法访问。</li>
 <li>可以在对象的构造函数中声明私有函数，并由特权方法调用。</li>
@@ -47,24 +55,14 @@
     <span class="kd">var</span> <span class="nx">PlayerSport</span> <span class="o">=</span> <span class="nx">sport</span><span class="o">?</span> <span class="nx">sport</span><span class="o">:</span> <span class="s2">&quot;Un&quot;</span><span class="p">;</span>
     <span class="kd">function</span> <span class="nx">isAvailable</span><span class="p">(){</span>
         <span class="k">return</span> <span class="nx">available</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">playerAge</span> <span class="o">&lt;</span> <span class="nx">retirementAge …</span></pre></div>
-                <a class="readmore" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/websocket.html" rel="bookmark"
-                           title="Permalink to WebSocket">WebSocket</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-09-07T21:30:00+08:00">
-                Published: 四 07 九月 2017
-        </abbr>
-
-
-</footer><!-- /.post-info -->                <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
+    </div>
+    <p class="readmore"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/websocket.html">WebSocket</a></h1>
+    <div class="post-meta">2017-09-07</div>
+    <div class="post-content">
+        <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
 <p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
 <p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
 <p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
@@ -79,24 +77,14 @@
 <p>WebSocketHandler.on_close()</p>
 <p>当WebSocket连接关闭后被调用。</p>
 <p>WebSocketHandler.write_message(message …</p>
-                <a class="readmore" href="/websocket.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/jszhong-ge-chong-diao-yong-fang-shi.html" rel="bookmark"
-                           title="Permalink to js中各种调用方式">js中各种调用方式</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2017-09-07T20:30:00+08:00">
-                Published: 四 07 九月 2017
-        </abbr>
-
-
-</footer><!-- /.post-info -->                <ol>
+    </div>
+    <p class="readmore"><a href="/websocket.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a></h1>
+    <div class="post-meta">2017-09-07</div>
+    <div class="post-content">
+        <ol>
 <li>作为函数调用</li>
 </ol>
 <p>如果函数不是以方法，构造函数或通过apply(),call()调用，那么它只能作为一个函数被调用：</p>
@@ -127,18 +115,89 @@
     <span class="nx">testObjFunc</span><span class="o">:</span> <span class="nx">testF</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testObj …</span></pre></div>
-                <a class="readmore" href="/jszhong-ge-chong-diao-yong-fang-shi.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-        <a href="/index.html">&laquo;</a>
-    Page 2 / 18
-        <a href="/index3.html">&raquo;</a>
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-        </section><!-- /#extras -->
+    </div>
+    <p class="readmore"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">Read More</a></p>
+</div>
+
+<div class="page-navigator">
+    <a class="extend prev" rel="prev" href="/index.html">Previous</a>
+    <a class="page-number" href="/index.html">1</a>
+    <span class="page-number current">2</span>
+    <a class="page-number" href="/index3.html">3</a>
+    <a class="page-number" href="/index4.html">4</a>
+    <span class="space">...</span>
+    <a class="page-number" href="/index18.html">18</a>
+    <a class="extend next" rel="next" href="/index3.html">Next</a></nav>
+</div class="page-navigator">
+
+
+        </div></div>
+        <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
+<div class="widget">
+    <form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form">
+        <input type="text" name="q" maxlength="20" placeholder="Search"/>
+        <input type="hidden" name="sitesearch" value=""/>
+    </form>
+</div><div class="widget">
+    <div class="widget-title">
+        <i class="fa fa-folder-o"> Categories</i>
+    </div>
+    <ul class="category-list">
+        <li class="category-list-item"><a class="category-list-link" href="/category/git.html">git</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/javascript.html">JavaScript</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/js.html">JS</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/pelican.html">Pelican</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/python.html">python</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
+    </ul>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
+    <div class="tagcloud">
+    </div>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
+    <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/property.html">property</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/etag.html">ETag</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">函数作用域与块作用域</a>
+        </li>
+    </ul>
+</div>        </div></div>
+        <div class="pure-u-1 pure-u-md-3-4">
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+    </div>
+
+<a id="rocket" href="#top" class="show"></a>
+<script type="text/javascript" src="/theme/js/totop.js" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script>
+<script type="text/javascript" src="/theme/js/fancybox.js" async></script>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" />
 
 </body>
-</html>
