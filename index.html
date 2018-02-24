@@ -38,7 +38,7 @@
     <h1 class="post-title"><a href="/asyncio.html">asyncio</a></h1>
     <div class="post-meta">2018-02-23</div>
     <div class="post-content">
-        <p>原文地址：https://www.jianshu.com/p/b5e347b3a17c</p>
+        <p>原文地址: <a href="https://www.jianshu.com/p/b5e347b3a17c">https://www.jianshu.com/p/b5e347b3a17c</a></p>
 <p>网络模型有很多中，为了实现高并发也有很多方案，多线程，多进程。无论多线程和多进程，IO的调度更多取决于系统，而协程的方式，调度来自用户，用户可以在函数中yield一个状态。使用协程可以实现高效的并发任务。Python的在3.4中引入了协程的概念，可是这个还是以生成器对象为基础，3.5则确定了协程的语法。下面将简单介绍asyncio的使用。实现协程的不仅仅是asyncio，tornado和gevent都实现了类似的功能。</p>
 <p>event_loop 事件循环：程序开启一个无限的循环，程序员会把一些函数注册到事件循环上。当满足事件发生的时候，调用相应的协程函数。</p>
 <p>coroutine 协程：协程对象，指一个使用async关键字定义的函数，它的调用不会立即执行函数，而是会返回一个协程对象。协程对象需要注册到事件循环，由事件循环调用。</p>
@@ -111,20 +111,21 @@
         <i class="fa fa-folder-o"> Categories</i>
     </div>
     <ul class="category-list">
-        <li class="category-list-item"><a class="category-list-link" href="/category/git.html">git</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/javascript.html">JavaScript</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/js.html">JS</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/pelican.html">Pelican</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/python.html">python</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
     </ul>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
+    <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
+    <a href="/tag/git.html" style="font-size: 12px">Git</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
+    <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
+    <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>

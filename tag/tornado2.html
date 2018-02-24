@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-重载运算符 | 日迹    </title>
+Tornado | 日迹    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -34,47 +34,20 @@
     </div>
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
-<div class="post">
-    <h1 class="post-title">重载运算符</h1>
-    <div class="post-meta"> 8 25, 2017
-    <span> | </span> <span>学习笔记</span>
-    </div>
-    <div class="post-content">
-        <p>python对重载运算符施加类一些限制：</p>
-<ol>
-<li>
-<p>不能重载内置类型的运算符。</p>
-</li>
-<li>
-<p>不能新建运算符，只能重载现有的。</p>
-</li>
-<li>
-<p>某些运算符不能重载——is，and，or和not（不过位运算符&amp;，|， ～可以）。</p>
-</li>
-</ol>
-<p>为了支持设计不同类型的运算，python位中缀运算符特殊方法提供了特殊的分派机制。对表达式a+b来</p>
-<p>说，解释器会执行以下几步:</p>
-<ol>
-<li>
-<p>如果a有__add__方法，而且返回值不是NotImplemented,调用a.<strong>add</strong>(b),然后返回结果。</p>
-</li>
-<li>
-<p>如果a没有__add__方法，或者调用__add__方法返回值不是NotImplemented，检查b有没有__radd__</p>
-</li>
-</ol>
-<p>方法，如果有且返回值不是NotImplemented,调用b.<strong>radd</strong>(a),然后返回结果。</p>
-<ol>
-<li>如果b没有__radd__方法，或者调用__add__方法返回值是NotImplemented,抛出TypeError，并在错</li>
-</ol>
-<p>误信息中指明操作类型不支持。</p>
-
-        <div class="tags">
-        <a href="/tag/python.html">python</a>
-        </div>
-
-
-    </div>
-</div>
+<div class="post"><div class="post-archive">
+<h1 class="label-title">Articles tagged by <em>Tornado</em></h1>
+<ul class="listing">
+    <li><span class="date">2017/09/07</span><a href="/websocket.html">WebSocket</a></li>
+    <li><span class="date">2017/09/06</span><a href="/tornadoyi-bu.html">Tornado异步</a></li>
+    <li><span class="date">2017/09/04</span><a href="/yong-hu-yan-zheng.html">用户验证</a></li>
+    <li><span class="date">2017/08/27</span><a href="/cookie.html">cookie</a></li>
+    <li><span class="date">2017/08/27</span><a href="/jie-kou-yu-diao-yong-shun-xu.html">接口与调用顺序</a></li>
+    <li><span class="date">2017/08/26</span><a href="/input.html">Input</a></li>
+    <li><span class="date">2017/08/26</span><a href="/output.html">Output</a></li>
+    <li><span class="date">2017/08/24</span><a href="/chu-shi-tornado.html">初试tornado</a></li>
+    <li><span class="date">2017/07/14</span><a href="/tornadojian-jie.html">tornado简介</a></li>
+</ul>
+</div></div>
         </div></div>
         <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
 <div class="widget">
@@ -107,39 +80,36 @@
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
     <ul class="post-list">
         <li class="post-list-item">
-        <a class="post-list-link" href="/asyncio.html">asyncio</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/property.html">property</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/etag.html">ETag</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
-        </li>
-        <li class="post-list-item">
         <a class="post-list-link" href="/websocket.html">WebSocket</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
         </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/yong-hu-yan-zheng.html">用户验证</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/cookie.html">cookie</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/jie-kou-yu-diao-yong-shun-xu.html">接口与调用顺序</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/input.html">Input</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/output.html">Output</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/chu-shi-tornado.html">初试tornado</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/tornadojian-jie.html">tornado简介</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2017 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>
