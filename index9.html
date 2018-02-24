@@ -10,14 +10,14 @@
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
     日迹    </title>
-    <link rel="stylesheet" type="text/css" href="/../theme/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/../theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="Shortcut Icon" type="image/x-icon" href="/../theme/fav.ico" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
 </head>
 
 <body>
@@ -34,6 +34,31 @@
     </div>
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title"><a href="/memoryview.html">memoryview</a></h1>
+    <div class="post-meta">2017-07-25</div>
+    <div class="post-content">
+        <p>memoryview是一个内置类，她能让用户在不复制内容的情况下操作同一个数组的不同切片。</p>
+<p>memoryview.cast能以不同的方式读写同一块内存数据而且内容字节不会随意移动。</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">array</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">numbers_m</span> <span class="o">=</span> <span class="n">memoryview</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">numbers_m</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">memory</span> <span class="n">at</span> <span class="mh">0x10709ad08</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers_m</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="mi">5</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">numbers_c</span> <span class="o">=</span> <span class="n">numbers_m</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">numbers_c</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">Out …</span></pre></div>
+    </div>
+    <p class="readmore"><a href="/memoryview.html">Read More</a></p>
+</div>
 <div class="post">
     <h1 class="post-title"><a href="/pythonde-si-you-shu-xing-he-shou-bao-hu-de-shu-xing.html">python的私有属性和受保护的属性</a></h1>
     <div class="post-meta">2017-07-25</div>
@@ -63,21 +88,6 @@
 <p>性能： Tornado有着优异的性能。它试图解决C10k问题，即处理大于或等于一万的并发.</p>
     </div>
     <p class="readmore"><a href="/tornadojian-jie.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/delhe-la-ji-hui-shou.html">del和垃圾回收</a></h1>
-    <div class="post-meta">2017-06-28</div>
-    <div class="post-content">
-        <p>del语句删除名称而不是对象，del命令可能会导致对象被当作垃圾回收，但仅当删除的变量保存的是引</p>
-<p>用对象的最后一个引用，或者无法得到对象时，重新绑定也可能导致对象的引用归零，导致对象被销</p>
-<p>毁。</p>
-<p>如果两个对象相互引用，当它们的引用只存在二者之间时，垃圾回收程序会判定它们都无法获取，进而</p>
-<p>将它们消灭。</p>
-<p>在Cpython中垃圾回收使用的主要算法是引用计数，实际上每个对象都会统计有多少个引用指向自己，</p>
-<p>当引用计数归零时，对象立即被销毁，Cpython会在对象上调用__del__方法（如果定义了），然后释放</p>
-<p>分配给对象的内存。Cpython2.0增加了分代回收方法，用于检测引用循环中涉及的对象组。</p>
-    </div>
-    <p class="readmore"><a href="/delhe-la-ji-hui-shou.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -115,14 +125,19 @@
         <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
     </ul>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
     <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/property.html">property</a>
         </li>
@@ -149,9 +164,6 @@
         </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">函数作用域与块作用域</a>
         </li>
     </ul>
 </div>        </div></div>

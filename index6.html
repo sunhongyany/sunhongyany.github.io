@@ -10,14 +10,14 @@
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
     日迹    </title>
-    <link rel="stylesheet" type="text/css" href="/../theme/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/../theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="Shortcut Icon" type="image/x-icon" href="/../theme/fav.ico" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
 </head>
 
 <body>
@@ -34,6 +34,41 @@
     </div>
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title"><a href="/jie-kou-yu-diao-yong-shun-xu.html">接口与调用顺序</a></h1>
+    <div class="post-meta">2017-08-27</div>
+    <div class="post-content">
+        <ol>
+<li>initialize()</li>
+</ol>
+<p>对应每个请求的处理类Handler在构造一个实例后首先执行initialize()方法。路由映射中的第三个字典型参数会作为该方法的命名参数传递，如：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([</span>
+    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/user/(.*)&#39;</span><span class="p">,</span> <span class="n">ProfileHandler</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)),</span>
+    <span class="p">])</span>
+</pre></div>
+
+
+<ol>
+<li>prepare()</li>
+</ol>
+<p>预处理，即在执行对应请求方式的HTTP方法（如get、post等）前先执行，注意：不论以何种HTTP方式请求，都会执行prepare()方法。</p>
+<ol>
+<li>
+<p>HTTP方法</p>
+<p>get      请求指定的页面信息，并返回实体主体。</p>
+<p>head     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</p>
+<p>post     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。</p>
+<p>POST请求可能会导致新的资源的建立和/或已有资源的修改 …</p></li></ol>
+    </div>
+    <p class="readmore"><a href="/jie-kou-yu-diao-yong-shun-xu.html">Read More</a></p>
+</div>
 <div class="post">
     <h1 class="post-title"><a href="/input.html">Input</a></h1>
     <div class="post-meta">2017-08-26</div>
@@ -88,39 +123,6 @@
     </div>
     <p class="readmore"><a href="/nei-zhi-lei-xing-fang-fa.html">Read More</a></p>
 </div>
-<div class="post">
-    <h1 class="post-title"><a href="/output.html">Output</a></h1>
-    <div class="post-meta">2017-08-26</div>
-    <div class="post-content">
-        <ol>
-<li>write(chunk)</li>
-</ol>
-<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
-<p>下面的代码会出现什么效果？</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
-<p>想一想，如何利用write方法写json数据？</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get …</span></pre></div>
-    </div>
-    <p class="readmore"><a href="/output.html">Read More</a></p>
-</div>
 
 <div class="page-navigator">
     <a class="extend prev" rel="prev" href="/index5.html">Previous</a>
@@ -157,14 +159,19 @@
         <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
     </ul>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
     <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/property.html">property</a>
         </li>
@@ -191,9 +198,6 @@
         </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">函数作用域与块作用域</a>
         </li>
     </ul>
 </div>        </div></div>

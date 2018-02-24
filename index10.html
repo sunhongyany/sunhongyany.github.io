@@ -10,14 +10,14 @@
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
     日迹    </title>
-    <link rel="stylesheet" type="text/css" href="/../theme/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/../theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="Shortcut Icon" type="image/x-icon" href="/../theme/fav.ico" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
 </head>
 
 <body>
@@ -34,6 +34,21 @@
     </div>
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title"><a href="/delhe-la-ji-hui-shou.html">del和垃圾回收</a></h1>
+    <div class="post-meta">2017-06-28</div>
+    <div class="post-content">
+        <p>del语句删除名称而不是对象，del命令可能会导致对象被当作垃圾回收，但仅当删除的变量保存的是引</p>
+<p>用对象的最后一个引用，或者无法得到对象时，重新绑定也可能导致对象的引用归零，导致对象被销</p>
+<p>毁。</p>
+<p>如果两个对象相互引用，当它们的引用只存在二者之间时，垃圾回收程序会判定它们都无法获取，进而</p>
+<p>将它们消灭。</p>
+<p>在Cpython中垃圾回收使用的主要算法是引用计数，实际上每个对象都会统计有多少个引用指向自己，</p>
+<p>当引用计数归零时，对象立即被销毁，Cpython会在对象上调用__del__方法（如果定义了），然后释放</p>
+<p>分配给对象的内存。Cpython2.0增加了分代回收方法，用于检测引用循环中涉及的对象组。</p>
+    </div>
+    <p class="readmore"><a href="/delhe-la-ji-hui-shou.html">Read More</a></p>
+</div>
 <div class="post">
     <h1 class="post-title"><a href="/ruo-yin-yong.html">弱引用</a></h1>
     <div class="post-meta">2017-06-28</div>
@@ -68,21 +83,6 @@
 <span class="n">In</span> <span class="p">[</span><span class="mi">119</span><span class="p">]:</span> <span class="n">bus1 …</span></pre></div>
     </div>
     <p class="readmore"><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html">变量，元祖相对不可变性</a></h1>
-    <div class="post-meta">2017-06-25</div>
-    <div class="post-content">
-        <p>变量是对象的标签，每个变量都有标识，类型和值。变量一旦创建，它的标识不会变，标识可以理解为</p>
-<p>对象在内存地址中的地址，is是比较两个对象的标识，id()函数返回对象标识的整数表示。==运算符比</p>
-<p>较的是两个对象的值。is比==快，因为它不能重载，所以python不用寻找并调用特殊方法，而是直接比</p>
-<p>较两个整数的的ID，而a == b是语法糖，等同于a.<strong>eq</strong>(b).</p>
-<p>元祖的相对不可变性</p>
-<p>元祖的不可变性是指tuple数据结构的物理内容（即保存的引用）不可变，与引用的对象无关。而str，</p>
-<p>bytes和array.array等单一类型序列是扁平的，它们保存的不是引用，而是在连续的内存中，保存数据本</p>
-<p>身（字符，字节和数字）。</p>
-    </div>
-    <p class="readmore"><a href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -120,14 +120,19 @@
         <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/wang-luo.html">网络</a></li>
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
     </ul>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
     <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/property.html">property</a>
         </li>
@@ -154,9 +159,6 @@
         </li>
         <li class="post-list-item">
         <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
-        </li>
-        <li class="post-list-item">
-        <a class="post-list-link" href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">函数作用域与块作用域</a>
         </li>
     </ul>
 </div>        </div></div>
