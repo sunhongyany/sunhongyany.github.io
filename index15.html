@@ -35,28 +35,6 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/qie-pian.html">切片</a></h1>
-    <div class="post-meta">2017-06-24</div>
-    <div class="post-content">
-        <p>给切片赋值</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; l = list(range(10))
-&gt;&gt;&gt; l
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; l[2:5] = [&#39;a&#39;]
-&gt;&gt;&gt; l
-[0, 1, &#39;a&#39;, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; l[3:6:2] = [&#39;b&#39;, &#39;c&#39;]
-&gt;&gt;&gt; l
-[0, 1, &#39;a&#39;, &#39;b&#39;, 6, &#39;c&#39;, 8, 9]
-</pre></div>
-
-
-<p>但是赋值对象是切片时，赋值语句右面必须是个可迭代对象。</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; l[3:5] = 3 …</pre></div>
-    </div>
-    <p class="readmore"><a href="/qie-pian.html">Read More</a></p>
-</div>
-<div class="post">
     <h1 class="post-title"><a href="/sheng-cheng-yi-ge-huo-duo-ge-htmlbiao-qian.html">生成一个或多个HTML标签</a></h1>
     <div class="post-meta">2017-06-24</div>
     <div class="post-content">
@@ -107,6 +85,27 @@
     </div>
     <p class="readmore"><a href="/xu-lie-zeng-liang-fu-zhi.html">Read More</a></p>
 </div>
+<div class="post">
+    <h1 class="post-title"><a href="/you-guan-dict.html">有关dict</a></h1>
+    <div class="post-meta">2017-06-24</div>
+    <div class="post-content">
+        <p>1.键必须是可散列的。</p>
+<p>&emsp;&emsp;一个可散列的对象必须满足：</p>
+<p>&emsp;&emsp;（1）支持hash()函数，并且通过hash()所得到的散列值是不变的。</p>
+<p>&emsp;&emsp;（2）支持__eq__()方法来检测相等性。</p>
+<p>&emsp;&emsp;（3）若a == b为真，则hash（a）== hash（b）也为真。</p>
+<p>&emsp;&emsp;所有由用户自定义的对象默认都是可散列的。因为她们的散列值由id()获取，而且她们都不相等。</p>
+<p>2.字典在内存上开销巨大。</p>
+<p>&emsp;&emsp;如果数据不过大，不要空间优化，因为优化往往是可维护的对立面。</p>
+<p>3.键查询很快。</p>
+<p>4.键的次序取决于添加顺序。</p>
+<p>5.往字典里添加新键可能会改变已有键的顺序。</p>
+<p>&emsp;&emsp;迭代一个字典的所有键过程中同时对字典的键进行修改，那么这个循环很可能会跳过一些键，甚至</p>
+<p>跳过那些字典中已有的键。</p>
+<p>&emsp;&emsp;在python3中.keys(),.items(),.values()返回的都是字典视图，可以实时反馈字典的变化。</p>
+    </div>
+    <p class="readmore"><a href="/you-guan-dict.html">Read More</a></p>
+</div>
 
 <div class="page-navigator">
     <a class="extend prev" rel="prev" href="/index14.html">Previous</a>
@@ -134,21 +133,18 @@
         <i class="fa fa-folder-o"> Categories</i>
     </div>
     <ul class="category-list">
-        <li class="category-list-item"><a class="category-list-link" href="/category/javascript.html">JavaScript</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/python.html">python</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/shell.html">shell</a></li>
-        <li class="category-list-item"><a class="category-list-link" href="/category/tornado.html">Tornado</a></li>
         <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
     </ul>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
+    <a href="/tag/git.html" style="font-size: 12px">Git</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
