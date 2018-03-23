@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="description" content="Stay hungry, stay foolish" />
+    <title>
+在HTML中使用JavaScript | 梦与想    </title>
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
+</head>
+
+<body>
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
+        </div>
+        <div id="nav-menu">
+            <a href="/"><i class="fa fa-home"> 首页</i></a>
+            <a href="/archives.html"><i class="fa fa-archive"> 文章归档</i></a>
+        </div>
+    </div>
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title">在HTML中使用JavaScript</h1>
+    <div class="post-meta"> 9 11, 2017
+    <span> | </span> <span>学习笔记</span>
+    </div>
+    <div class="post-content">
+        <p>1.1 向HTML页面中插入JavaScript的主要方法，就是使用<code>&lt;script&gt;</code>元素。</p>
+<p>使用<code>&lt;script&gt;</code>元素的方式有两种：直接在页面中嵌入JavaScript代码和包含外部JavaScript文件。</p>
+<p>包含在<code>&lt;script&gt;</code>元素内部的JavaScript代码将被从上至下依次解释。就拿前面这个例子来说，解释器会解释一个函数的定义，然后将该定义保存在自己的环境当中。在解释器对<code>&lt;script&gt;</code>元素内部的所有代码求值完毕以前，页面中的其余内容都不会被浏览器加载或显示。</p>
+<p>外部文件只须包含通常要放在开始的<script>和结束的</script>之间的那些JavaScript代码即可。与解析嵌入式JavaScript代码一样，在解析外部JavaScript文件（包括下载该文件）时，页面的处理也会暂时停止。</p>
+<p>需要注意的是，带有src属性的<code>&lt;script&gt;</code>元素不应该在其<code>&lt;script&gt;</code>和<code>&lt;/script&gt;</code>标签之间再包含额外的JavaScript代码。如果包含了嵌入的代码，则只会下载并执行外部脚本文件，嵌入的代码会被忽略。</p>
+<p>1.1.1  标签的位置</p>
+<p>按照传统的做法，所有<code>&lt;script&gt;</code>元素都应该放在页面的<code>&lt;head&gt;</code>元素中，这种做法的目的就是把所有外部文件（包括CSS文件和JavaScript文件）的引用都放在相同的地方。可是，在文档的<code>&lt;head&gt;</code>元素中包含所有JavaScript文件，意味着必须等到全部JavaScript代码都被下载、解析和执行完成以后，才能开始呈现页面的内容（浏览器在遇到<code>&lt;body&gt;</code>标签时才开始呈现内容）。对于那些需要很多JavaScript代码的页面来说，这无疑会导致浏览器在呈现页面时出现明显的延迟，而延迟期间的浏览器窗口中将是一片空白。为了避免这个问题，现代Web应用程序一般都把全部JavaScript引用放在<code>&lt;body&gt;</code>元素中页面内容的后面.</p>
+<p>嵌入代码与外部文件</p>
+<p>在HTML中嵌入JavaScript代码虽然没有问题，但一般认为最好的做法还是尽可能使用外部文件来包含JavaScript代码。不过，并不存在必须使用外部文件的硬性规定，但支持使用外部文件的人多会强调如下优点。
+1. 可维护性：遍及不同HTML页面的JavaScript会造成维护问题。但把所有JavaScript文件都放在一个文件夹中，维护起来就轻松多了。而且开发人员因此也能够在不触及HTML标记的情况下，集中精力编辑JavaScript代码。
+2. 可缓存：浏览器能够根据具体的设置缓存链接的所有外部JavaScript文件。也就是说，如果有两个页面都使用同一个文件，那么这个文件只需下载一次。因此，最终结果就是能够加快页面加载的速度。
+3. 适应未来：通过外部文件来包含JavaScript无须使用前面提到XHTML或注释hack。HTML和XHTML包含外部文件的语法是相同的。</p>
+
+        <div class="tags">
+        <a href="/tag/javascript.html">JavaScript</a>
+        </div>
+
+
+    </div>
+</div>
+        </div></div>
+        <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
+<div class="widget">
+    <form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form">
+        <input type="text" name="q" maxlength="20" placeholder="Search"/>
+        <input type="hidden" name="sitesearch" value=""/>
+    </form>
+</div><div class="widget">
+    <div class="widget-title">
+        <i class="fa fa-folder-o"> Categories</i>
+    </div>
+    <ul class="category-list">
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
+    </ul>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
+    <div class="tagcloud">
+    <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
+    <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
+    <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
+    <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
+    <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    </div>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
+    <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/property.html">property</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/etag.html">ETag</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
+        </li>
+    </ul>
+</div>        </div></div>
+        <div class="pure-u-1 pure-u-md-3-4">
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+    </div>
+
+<a id="rocket" href="#top" class="show"></a>
+<script type="text/javascript" src="/theme/js/totop.js" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script>
+<script type="text/javascript" src="/theme/js/fancybox.js" async></script>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" />
+
+</body>

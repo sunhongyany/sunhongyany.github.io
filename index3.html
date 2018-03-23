@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,89 +35,50 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a></h1>
-    <div class="post-meta">2017-09-07</div>
+    <h1 class="post-title"><a href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a></h1>
+    <div class="post-meta">2017-09-13</div>
+    <div class="post-content">
+        <p>执行环境（execution context，为简单起见，有时也称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable  object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。全局执行环境是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web浏览器中，全局执行环境被认为是window对象（第7章将详细讨论），因此所有全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）。每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript程序中的执行流正是由这个方便的机制控制着。当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象（activation  object）作为变量对象。活动对象在最开始时只包含一个变量，即arguments对象 …</p>
+    </div>
+    <p class="readmore"><a href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/javascript-bian-liang.html">JavaScript 变量</a></h1>
+    <div class="post-meta">2017-09-13</div>
+    <div class="post-content">
+        <p>ECMAScript变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。在将一个值赋给变量时，解析器必须确定这个值是基本类型值还是引用类型值。第3章讨论了5种基本数据类型：Undefined、Null、Boolean、Number和String。这5种基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。为此，引用类型的值是按引用访问的①。在很多语言中，字符串以对象的形式来表示，因此被认为是引用类型的。ECMAScript放弃了这一传统。</p>
+<p>①这种说法不严密，当复制保存着对象的某个变量时，操作的是对象的引用。但在为对象添加属性时，操作的是实际的对象。</p>
+<ol>
+<li>动态的属性</li>
+</ol>
+<p>定义基本类型值和引用类型值的方式是类似的：创建一个变量并为该变量赋值。但是，当这个值保存到变量中以后，对不同类型值可以执行的操作则大相径庭。对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法 </p>
+<ol>
+<li>复制变量值</li>
+</ol>
+<p>除了保存的方式不同之外，在从一个变量向另一个变量复制基本类型值和引用类型值时，也存在不同。如果从一个变量向另一个变量复制基本类型的值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配的位置上。</p>
+<p>当从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针 …</p>
+    </div>
+    <p class="readmore"><a href="/javascript-bian-liang.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/javascript-han-shu.html">JavaScript 函数</a></h1>
+    <div class="post-meta">2017-09-12</div>
     <div class="post-content">
         <ol>
-<li>作为函数调用</li>
+<li>理解参数</li>
 </ol>
-<p>如果函数不是以方法，构造函数或通过apply(),call()调用，那么它只能作为一个函数被调用：</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{}</span>
-<span class="nx">add</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">};</span>
-<span class="nx">sub</span><span class="p">();</span>
-</pre></div>
-
-
-<p>当以这种模式调用时，this被绑定在全局对象上。</p>
-<ol>
-<li>作为方法被调用</li>
-</ol>
-<p>方法是作为对象属性的函数。对于方法来说，this被绑定在方法被调用时所在的对象上。</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">title</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-<span class="kd">function</span> <span class="nx">testF</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testF</span><span class="p">());</span>
-<span class="kd">var</span> <span class="nx">testFCopy</span> <span class="o">=</span> <span class="nx">testF</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testFCopy</span><span class="p">());</span>
-<span class="kd">var</span> <span class="nx">testObj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">testObjFunc</span><span class="o">:</span> <span class="nx">testF</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testObj …</span></pre></div>
-    </div>
-    <p class="readmore"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/tornadoyi-bu.html">Tornado异步</a></h1>
-    <div class="post-meta">2017-09-06</div>
-    <div class="post-content">
-        <p>因为epoll主要是用来解决网络IO的并发问题，所以Tornado的异步编程也主要体现在网络IO的异步上，即异步Web请求。</p>
-<ol>
-<li>tornado.httpclient.AsyncHTTPClient</li>
-</ol>
-<p>Tornado提供了一个异步Web请求客户端tornado.httpclient.AsyncHTTPClient用来进行异步Web请求。</p>
-<p>fetch(request, callback=None)</p>
-<p>用于执行一个web请求request，并异步返回一个tornado.httpclient.HTTPResponse响应。</p>
-<p>request可以是一个url，也可以是一个tornado.httpclient.HTTPRequest对象。如果是url，fetch会自己构造一个HTTPRequest对象。</p>
-<p>HTTPRequest</p>
-<p>HTTP请求类，HTTPRequest的构造函数可以接收众多构造参数，最常用的如下：</p>
-<ul>
-<li>url (string) – 要访问的url，此参数必传，除此之外均为可选参数</li>
-<li>method (string) – HTTP访问方式，如“GET”或“POST”，默认为GET方式</li>
-<li>headers (HTTPHeaders or dict) – 附加的HTTP协议头</li>
-<li>body – HTTP请求的请求体</li>
-</ul>
-<p>HTTPResponse</p>
-<p>HTTP响应类，其常用属性如下 …</p>
-    </div>
-    <p class="readmore"><a href="/tornadoyi-bu.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/argumentscan-shu.html">arguments参数</a></h1>
-    <div class="post-meta">2017-09-06</div>
-    <div class="post-content">
-        <p>arguments参数是传递给函数的所有参数的集合。这个集合有个名为length的属性，它包含了参数的个数。</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
+<p>ECMAScript函数的参数与大多数其他语言中函数的参数有所不同。ECMAScript函数不介意传递进来多少个参数，也不在乎传进来参数是什么数据类型。也就是说，即便你定义的函数只接收两个参数，在调用这个函数时也未必一定要传递两个参数。可以传递一个、三个甚至不传递参数，而解析器永远不会有什么怨言。之所以会这样，原因是ECMAScript中的参数在内部是用一个数组来表示的。函数接收到的始终都是这个数组，而不关心数组中包含哪些参数（如果有参数的话）。如果这个数组中不包含任何元素，无所谓；如果包含多个元素，也没有问题。实际上，在函数体内可以通过arguments对象来访问这个参数数组，从而获取传递给函数的每一个参数。其实，arguments对象只是与数组类似（它并不是Array的实例），因为可以使用方括号语法访问它的每一个元素（即第一个元素是arguments[0]，第二个元素是argumetns[1]，以此类推），使用length属性来确定传递进来多少个参数。</p>
+<p>关于arguments的行为，还有一点比较有意思。那就是它的值永远与对应命名参数的值保持同步。例如：</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">doAdd</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>    <span class="c1">// 打印出10</span>
 </pre></div>
 
 
-<p>arguments类似数组，可以用下面的方法将其转化成数组：</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-</pre></div>
+<p>每次执行这个doAdd()函数都会重写第二个参数，将第二个参数的值修改为10 …</p>
     </div>
-    <p class="readmore"><a href="/argumentscan-shu.html">Read More</a></p>
+    <p class="readmore"><a href="/javascript-han-shu.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -128,7 +89,7 @@
     <a class="page-number" href="/index4.html">4</a>
     <a class="page-number" href="/index5.html">5</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index4.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -151,12 +112,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -174,27 +137,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

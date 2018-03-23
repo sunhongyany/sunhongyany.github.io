@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,97 +35,73 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/output.html">Output</a></h1>
-    <div class="post-meta">2017-08-26</div>
+    <h1 class="post-title"><a href="/argumentscan-shu.html">arguments参数</a></h1>
+    <div class="post-meta">2017-09-06</div>
     <div class="post-content">
-        <ol>
-<li>write(chunk)</li>
-</ol>
-<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
+        <p>arguments参数是传递给函数的所有参数的集合。这个集合有个名为length的属性，它包含了参数的个数。</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">total</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>    <span class="c1">// 打印出10</span>
 </pre></div>
 
 
-<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
-<p>下面的代码会出现什么效果？</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
+<p>arguments类似数组，可以用下面的方法将其转化成数组：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</pre></div>
+    </div>
+    <p class="readmore"><a href="/argumentscan-shu.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/thiscan-shu.html">this参数</a></h1>
+    <div class="post-meta">2017-09-06</div>
+    <div class="post-content">
+        <p>this参数指向一个与此次函数调用相关联的对象，该对象称为函数上下文。</p>
+    </div>
+    <p class="readmore"><a href="/thiscan-shu.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">函数作用域与块作用域</a></h1>
+    <div class="post-meta">2017-09-05</div>
+    <div class="post-content">
+        <p>JS变量以函数作为作用域。</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">b</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">bar</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
-<p>想一想，如何利用write方法写json数据？</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<p>JS没有块作用域的概念，ES6引入了关键字let，可以用于生成传统的块作用域。</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// b是该代码块的局部变量</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>    <span class="c1">// ReferenceError </span>
+</pre></div>
 
-<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get …</span></pre></div>
+
+<p>思考下面代码将会输出什么？</p>
+<div class="highlight"><pre><span></span><span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</pre></div>
+
+
+<p>将会输出1，原因是在JS中声明会被提升，但是赋值和其他可执行的逻辑依然保留在原位置，上面的代码片段实际是这样执行的：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/output.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/xu-lie-de-xiu-gai-san-lie-he-qie-pian.html">序列的修改，散列和切片</a></h1>
-    <div class="post-meta">2017-08-25</div>
-    <div class="post-content">
-        <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">84</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">85</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">reprlib</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">86</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">math</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">87</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">numbers</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">88</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">functools</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">89</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">operator</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">90</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Vector</span><span class="p">:</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="n">typecode</span> <span class="o">=</span> <span class="s1">&#39;d&#39;</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
-    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_components</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typecode</span><span class="p">,</span> <span class="n">components</span><span class="p">)</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">)</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">def …</span></pre></div>
-    </div>
-    <p class="readmore"><a href="/xu-lie-de-xiu-gai-san-lie-he-qie-pian.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/zhong-zai-yun-suan-fu.html">重载运算符</a></h1>
-    <div class="post-meta">2017-08-25</div>
-    <div class="post-content">
-        <p>python对重载运算符施加类一些限制：</p>
-<ol>
-<li>
-<p>不能重载内置类型的运算符。</p>
-</li>
-<li>
-<p>不能新建运算符，只能重载现有的。</p>
-</li>
-<li>
-<p>某些运算符不能重载——is，and，or和not（不过位运算符&amp;，|， ～可以）。</p>
-</li>
-</ol>
-<p>为了支持设计不同类型的运算，python位中缀运算符特殊方法提供了特殊的分派机制。对表达式a+b来</p>
-<p>说，解释器会执行以下几步:</p>
-<ol>
-<li>
-<p>如果a有__add__方法，而且返回值不是NotImplemented,调用a.<strong>add</strong>(b),然后返回结果。</p>
-</li>
-<li>
-<p>如果a没有__add__方法，或者调用__add__方法返回值不是NotImplemented，检查b有没有__radd__</p>
-</li>
-</ol>
-<p>方法，如果有且返回值不是NotImplemented,调用b.<strong>radd</strong>(a),然后返回结果。</p>
-<ol>
-<li>如果b没有__radd__方法，或者调用__add__方法返回值是NotImplemented,抛出TypeError，并在错</li>
-</ol>
-<p>误信息中指明操作类型不支持。</p>
-    </div>
-    <p class="readmore"><a href="/zhong-zai-yun-suan-fu.html">Read More</a></p>
+    <p class="readmore"><a href="/han-shu-zuo-yong-yu-yu-kuai-zuo-yong-yu.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -138,7 +114,7 @@
     <a class="page-number" href="/index8.html">8</a>
     <a class="page-number" href="/index9.html">9</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index8.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -161,12 +137,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -184,27 +162,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -45,50 +45,47 @@
     <p class="readmore"><a href="/urllibzhong-de-quotehan-shu.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a></h1>
-    <div class="post-meta">2017-09-09</div>
+    <h1 class="post-title"><a href="/la-ji-shou-ji.html">垃圾收集</a></h1>
+    <div class="post-meta">2017-09-13</div>
     <div class="post-content">
-        <p>利用函数作用域来实现类的效果。</p>
-<ol>
-<li>可以在函数中使用关键字var声明私有变量，它们可以由私有函数和特权方法访问。</li>
-<li>可以在对象的构造函数中声明私有函数，并由特权方法调用。</li>
-<li>特权方法可以使用this.method = function(){}.</li>
-<li>公共方法可以使用Class.prototype.method = function(){}来声明。</li>
-<li>公共属性可以使用this.prototype来声明，能够对外部访问。</li>
+        <ol>
+<li>标记清除</li>
+<li>引用计数</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sport</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">country</span><span class="p">){</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">noOfPlayers</span><span class="o">++</span><span class="p">;</span>
-    <span class="c1">// 私有属性和函数，只能由特权对象浏览，编辑或调用。</span>
-    <span class="kd">var</span> <span class="nx">retirementAge</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">playerAge</span> <span class="o">=</span> <span class="nx">age</span><span class="o">?</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">PlayerSport</span> <span class="o">=</span> <span class="nx">sport</span><span class="o">?</span> <span class="nx">sport</span><span class="o">:</span> <span class="s2">&quot;Un&quot;</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">isAvailable</span><span class="p">(){</span>
-        <span class="k">return</span> <span class="nx">available</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">playerAge</span> <span class="o">&lt;</span> <span class="nx">retirementAge …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">Read More</a></p>
+    <p class="readmore"><a href="/la-ji-shou-ji.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/websocket.html">WebSocket</a></h1>
-    <div class="post-meta">2017-09-07</div>
+    <h1 class="post-title"><a href="/yin-yong-lei-xing.html">引用类型</a></h1>
+    <div class="post-meta">2017-09-13</div>
     <div class="post-content">
-        <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
-<p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
-<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
-<p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
-<ol>
-<li>Tornado的WebSocket模块</li>
+        <ol>
+<li>object类型</li>
 </ol>
-<p>Tornado提供支持WebSocket的模块是tornado.websocket，其中提供了一个WebSocketHandler类用来处理通讯。</p>
-<p>WebSocketHandler.open()</p>
-<p>当一个WebSocket连接建立后被调用。</p>
-<p>WebSocketHandler.on_message(message)</p>
-<p>当客户端发送消息message过来时被调用，注意此方法必须被重写。</p>
-<p>WebSocketHandler.on_close()</p>
-<p>当WebSocket连接关闭后被调用。</p>
-<p>WebSocketHandler.write_message(message …</p>
+<p>创建Object实例的方式有两种。第一种是使用new操作符后跟Object构造函数，另一种方式是使用对象字面量表示法。</p>
+<ol>
+<li>
+<p>数组</p>
+</li>
+<li>
+<p>转换方法</p>
+</li>
+</ol>
+<p>所有对象都具有toLocaleString()、toString()和valueOf()方法。其中，调用数组的toString()方法会返回由数组中每个值的字符串形式拼接而成的一个以逗号分隔的字符串。而调用valueOf()返回的还是数组。实际上，为了创建这个字符串会调用数组每一项的toString()方法。来看下面这个例子。</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">];</span>
+<span class="c1">// 创建一个包含3个字符串的数组</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">colors</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="c1">// red,blue,green</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">colors</span><span class="p">.</span><span class="nx">valueOf</span><span class="p">());</span>
+<span class="c1">// red,blue,green</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>
+<span class="c1">// red,blue,green </span>
+</pre></div>
+
+
+<p>在这里，我们首先显式地调用了toString()方法，以便返回数组的字符串表示，每个值的字符串表示拼接成了一个字符串，中间以逗号分隔。接着调用valueOf()方法 …</p>
     </div>
-    <p class="readmore"><a href="/websocket.html">Read More</a></p>
+    <p class="readmore"><a href="/yin-yong-lei-xing.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -98,7 +95,7 @@
     <a class="page-number" href="/index3.html">3</a>
     <a class="page-number" href="/index4.html">4</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index3.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -121,12 +118,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -144,27 +143,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="description" content="Stay hungry, stay foolish" />
+    <title>
+执行环境及作用域 | 梦与想    </title>
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
+</head>
+
+<body>
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
+        </div>
+        <div id="nav-menu">
+            <a href="/"><i class="fa fa-home"> 首页</i></a>
+            <a href="/archives.html"><i class="fa fa-archive"> 文章归档</i></a>
+        </div>
+    </div>
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title">执行环境及作用域</h1>
+    <div class="post-meta"> 9 13, 2017
+    <span> | </span> <span>学习笔记</span>
+    </div>
+    <div class="post-content">
+        <p>执行环境（execution context，为简单起见，有时也称为“环境”）是JavaScript中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable  object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。全局执行环境是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web浏览器中，全局执行环境被认为是window对象（第7章将详细讨论），因此所有全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）。每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript程序中的执行流正是由这个方便的机制控制着。当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象（activation  object）作为变量对象。活动对象在最开始时只包含一个变量，即arguments对象（这个对象在全局环境中是不存在的）。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止（如果找不到标识符，通常会导致错误发生）。
+1. 延长作用域链</p>
+<p>虽然执行环境的类型总共只有两种——全局和局部（函数），但还是有其他办法来延长作用域链。这么说是因为有些语句可以在作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被移除。在两种情况下会发生这种现象。具体来说，就是当执行流进入下列任何一个语句时，作用域链就会得到加长：try-catch语句的catch块；with语句。这两个语句都会在作用域链的前端添加一个变量对象。对with语句来说，会将指定的对象添加到作用域链中。对catch语句来说，会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。</p>
+
+        <div class="tags">
+        <a href="/tag/javascript.html">JavaScript</a>
+        </div>
+
+
+    </div>
+</div>
+        </div></div>
+        <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
+<div class="widget">
+    <form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form">
+        <input type="text" name="q" maxlength="20" placeholder="Search"/>
+        <input type="hidden" name="sitesearch" value=""/>
+    </form>
+</div><div class="widget">
+    <div class="widget-title">
+        <i class="fa fa-folder-o"> Categories</i>
+    </div>
+    <ul class="category-list">
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
+    </ul>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
+    <div class="tagcloud">
+    <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
+    <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
+    <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
+    <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
+    <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    </div>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
+    <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/property.html">property</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/etag.html">ETag</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
+        </li>
+    </ul>
+</div>        </div></div>
+        <div class="pure-u-1 pure-u-md-3-4">
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+    </div>
+
+<a id="rocket" href="#top" class="show"></a>
+<script type="text/javascript" src="/theme/js/totop.js" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script>
+<script type="text/javascript" src="/theme/js/fancybox.js" async></script>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" />
+
+</body>

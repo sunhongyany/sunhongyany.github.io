@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,54 +35,91 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/delhe-la-ji-hui-shou.html">del和垃圾回收</a></h1>
-    <div class="post-meta">2017-06-28</div>
+    <h1 class="post-title"><a href="/input.html">Input</a></h1>
+    <div class="post-meta">2017-08-26</div>
     <div class="post-content">
-        <p>del语句删除名称而不是对象，del命令可能会导致对象被当作垃圾回收，但仅当删除的变量保存的是引</p>
-<p>用对象的最后一个引用，或者无法得到对象时，重新绑定也可能导致对象的引用归零，导致对象被销</p>
-<p>毁。</p>
-<p>如果两个对象相互引用，当它们的引用只存在二者之间时，垃圾回收程序会判定它们都无法获取，进而</p>
-<p>将它们消灭。</p>
-<p>在Cpython中垃圾回收使用的主要算法是引用计数，实际上每个对象都会统计有多少个引用指向自己，</p>
-<p>当引用计数归零时，对象立即被销毁，Cpython会在对象上调用__del__方法（如果定义了），然后释放</p>
-<p>分配给对象的内存。Cpython2.0增加了分代回收方法，用于检测引用循环中涉及的对象组。</p>
+        <p>利用HTTP协议向服务器传参有几种途径？</p>
+<ol>
+<li>查询字符串（query string)，形如key1=value1&amp;key2=value2；</li>
+<li>请求体（body）中发送的数据，比如表单数据、json、xml；</li>
+<li>提取uri的特定部分，如/blogs/2016/09/0001，可以在服务器端的路由中用正则表达式截取；</li>
+<li>在http报文的头（header）中增加自定义字段，如X-XSRFToken=itcast。</li>
+</ol>
+<p>我们现在来看下tornado中为我们提供了哪些方法来获取请求的信息。</p>
+<ol>
+<li>
+<p>获取查询字符串参数</p>
+<p>get_query_argument(name, default=_ARG_DEFAULT, strip=True)</p>
+</li>
+</ol>
+<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
+<p>&emsp;&emsp;default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
+<p>&emsp;&emsp;strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
+<div class="highlight"><pre><span></span>get_query_arguments(name, strip=True)
+</pre></div>
+
+
+<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，注意返回的是list列表 …</p>
     </div>
-    <p class="readmore"><a href="/delhe-la-ji-hui-shou.html">Read More</a></p>
+    <p class="readmore"><a href="/input.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/ruo-yin-yong.html">弱引用</a></h1>
-    <div class="post-meta">2017-06-28</div>
+    <h1 class="post-title"><a href="/nei-zhi-lei-xing-fang-fa.html">内置类型方法</a></h1>
+    <div class="post-meta">2017-08-26</div>
     <div class="post-content">
-        <p>弱引用不会增加对象的引用数量，引用的目标对象称为所指对象，弱引用在缓存应用中很有用，因为我</p>
-<p>们不想仅因为被缓存引用着而始终保存着缓存对象。</p>
-<p>基本的list和dict实例不会做为弱引用的目标，但他们的子类可以，set可以作为弱引用所指对象，int和</p>
-<p>tuple不可以作为弱引用的所指对象，它们的子类也不可以。</p>
+        <p>内置类型的方法基本上不会调用子类覆盖的方法。例如，dict的子类覆盖的__getitem__()不会被内置类</p>
+<p>型的get()调用内置类型dict的__init__,__update__方法会忽略我们覆盖的__setitem__方法。</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">90</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">91</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">92</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">93</span><span class="p">]:</span> <span class="n">d</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">93</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">94</span><span class="p">]:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;two&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">95</span><span class="p">]:</span> <span class="n">d</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">95</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;one …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/ruo-yin-yong.html">Read More</a></p>
+    <p class="readmore"><a href="/nei-zhi-lei-xing-fang-fa.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">使用可变类型作为参数的默认值</a></h1>
-    <div class="post-meta">2017-06-28</div>
+    <h1 class="post-title"><a href="/output.html">Output</a></h1>
+    <div class="post-meta">2017-08-26</div>
     <div class="post-content">
-        <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">115</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Bus</span><span class="p">():</span>
-     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passengers</span><span class="o">=</span><span class="p">[]):</span>
-     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">=</span> <span class="n">passengers</span>
-     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-     <span class="o">...</span><span class="p">:</span>
+        <ol>
+<li>write(chunk)</li>
+</ol>
+<p>将chunk数据写到输出缓冲区。如我们在之前的示例代码中写的：</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python!&quot;</span><span class="p">)</span>
+</pre></div>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">116</span><span class="p">]:</span> <span class="n">bus1</span> <span class="o">=</span> <span class="n">Bus</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">117</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<p>想一想，可不可以在同一个处理方法中多次使用write方法？</p>
+<p>下面的代码会出现什么效果？</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 1!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 2!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;hello python 3!&quot;</span><span class="p">)</span>
+</pre></div>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">passengers</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">119</span><span class="p">]:</span> <span class="n">bus1 …</span></pre></div>
+<p>write方法是写到缓冲区的，我们可以像写文件一样多次使用write方法不断追加响应内容，最终所有写到缓冲区的内容一起作为本次请求的响应输出。</p>
+<p>想一想，如何利用write方法写json数据？</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">IndexHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">Read More</a></p>
+    <p class="readmore"><a href="/output.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -95,7 +132,7 @@
     <a class="page-number" href="/index11.html">11</a>
     <a class="page-number" href="/index12.html">12</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index11.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -118,12 +155,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -141,27 +180,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

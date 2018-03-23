@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,83 +35,55 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/jsbi-bao.html">js闭包</a></h1>
-    <div class="post-meta">2017-09-05</div>
+    <h1 class="post-title"><a href="/zai-htmlzhong-shi-yong-javascript.html">在HTML中使用JavaScript</a></h1>
+    <div class="post-meta">2017-09-11</div>
     <div class="post-content">
-        <div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">outer</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">copy</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">OuterFn</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">InnerFn</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inner</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">outer</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">copy</span> <span class="o">=</span> <span class="nx">InnerFn</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">OuterFn</span><span class="p">();</span>
-<span class="nx">copy</span><span class="p">();</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">outer</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">copy</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">OuterFn</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">inner</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">InnerFn</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inner</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">outer</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">magic</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">copy</span> <span class="o">=</span> <span class="nx">InnerFn</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">console …</span></pre></div>
+        <p>1.1 向HTML页面中插入JavaScript的主要方法，就是使用<code>&lt;script&gt;</code>元素。</p>
+<p>使用<code>&lt;script&gt;</code>元素的方式有两种：直接在页面中嵌入JavaScript代码和包含外部JavaScript文件。</p>
+<p>包含在<code>&lt;script&gt;</code>元素内部的JavaScript代码将被从上至下依次解释。就拿前面这个例子来说，解释器会解释一个函数的定义，然后将该定义保存在自己的环境当中。在解释器对<code>&lt;script&gt;</code>元素内部的所有代码求值完毕以前，页面中的其余内容都不会被浏览器加载或显示。</p>
+<p>外部文件只须包含通常要放在开始的<script>和结束的</script>之间的那些JavaScript代码即可。与解析嵌入式JavaScript代码一样，在解析外部JavaScript文件（包括下载该文件）时，页面的处理也会暂时停止。</p>
+<p>需要注意的是，带有src属性的<code>&lt;script&gt;</code>元素不应该在其<code>&lt;script&gt;</code>和<code>&lt;/script&gt;</code>标签之间再包含额外的JavaScript代码。如果包含了嵌入的代码，则只会下载并执行外部脚本文件，嵌入的代码会被忽略。</p>
+<p>1.1.1  标签的位置</p>
+<p>按照传统的做法，所有<code>&lt;script&gt;</code>元素都应该放在页面的<code>&lt;head&gt;</code>元素中，这种做法的目的就是把所有外部文件 …</p>
     </div>
-    <p class="readmore"><a href="/jsbi-bao.html">Read More</a></p>
+    <p class="readmore"><a href="/zai-htmlzhong-shi-yong-javascript.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/yong-hu-yan-zheng.html">用户验证</a></h1>
-    <div class="post-meta">2017-09-04</div>
+    <h1 class="post-title"><a href="/jsjian-jie.html">js简介</a></h1>
+    <div class="post-meta">2017-09-11</div>
     <div class="post-content">
-        <p>用户验证是指在收到用户请求后进行处理前先判断用户的认证状态（如登陆状态），若通过验证则正常处理，否则强制用户跳转至认证页面（如登陆页面）。</p>
-<p>authenticated装饰器</p>
-<p>为了使用Tornado的认证功能，我们需要对登录用户标记具体的处理函数。我们可以使用@tornado.web.authenticated装饰器完成它。当我们使用这个装饰器包裹一个处理方法时，Tornado将确保这个方法的主体只有在合法的用户被发现时才会调用。</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="nd">@tornado.web.authenticated</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;这是我的个人主页。&quot;</span><span class="p">)</span>
-<span class="n">get_current_user</span><span class="p">()</span><span class="err">方法</span>
-</pre></div>
-
-
-<p>装饰器@tornado.web.authenticated的判断执行依赖于请求处理类中的self.current_user属性，如果current_user值为假（None、False、0、""等），任何GET或HEAD请求都将把访客重定向到应用设置中login_url指定的URL，而非法用户的POST请求将返回一个带有403（Forbidden）状态的HTTP响应。</p>
-<p>在获取self.current_user属性的时候，tornado会调用get_current_user()方法来返回current_user的值。也就是说，我们验证用户的逻辑应写在get_current_user()方法中，若该方法返回非假值则验证通过 …</p>
+        <p>一个完整的JavaScript实现应该由下列三个不同的部分组成</p>
+<ol>
+<li>核心（ECMAScript）</li>
+<li>文档对象模型（DOM）</li>
+<li>浏览器对象模型（BOM）</li>
+</ol>
     </div>
-    <p class="readmore"><a href="/yong-hu-yan-zheng.html">Read More</a></p>
+    <p class="readmore"><a href="/jsjian-jie.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/cookie.html">cookie</a></h1>
-    <div class="post-meta">2017-08-27</div>
+    <h1 class="post-title"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a></h1>
+    <div class="post-meta">2017-09-09</div>
     <div class="post-content">
-        <p>设置</p>
-<p>set_cookie(name, value, domain=None, expires=None, path='/', expires_days=None)</p>
-<p>参数说明：</p>
-<p>参数名             说明</p>
-<p>name            cookie名</p>
-<p>value           cookie值</p>
-<p>domain          提交cookie时匹配的域名</p>
-<p>path            提交cookie时匹配的路径</p>
-<p>expires         cookie的有效期，可以是时间戳整数、时间元组或者datetime类型，为UTC时间</p>
-<p>expires_days    cookie的有效期，天数，优先级低于expires</p>
-<p>获取</p>
-<p>get_cookie(name, default=None)</p>
-<p>获取名为name的cookie，可以设置默认值。</p>
-<p>清除</p>
-<p>clear_cookie(name, path='/', domain=None)</p>
-<p>删除名为name，并同时匹配domain和path的cookie。</p>
-<p>clear_all_cookies(path='/', domain=None …</p>
+        <p>利用函数作用域来实现类的效果。</p>
+<ol>
+<li>可以在函数中使用关键字var声明私有变量，它们可以由私有函数和特权方法访问。</li>
+<li>可以在对象的构造函数中声明私有函数，并由特权方法调用。</li>
+<li>特权方法可以使用this.method = function(){}.</li>
+<li>公共方法可以使用Class.prototype.method = function(){}来声明。</li>
+<li>公共属性可以使用this.prototype来声明，能够对外部访问。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Player</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">sport</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">country</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">noOfPlayers</span><span class="o">++</span><span class="p">;</span>
+    <span class="c1">// 私有属性和函数，只能由特权对象浏览，编辑或调用。</span>
+    <span class="kd">var</span> <span class="nx">retirementAge</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">available</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">playerAge</span> <span class="o">=</span> <span class="nx">age</span><span class="o">?</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">PlayerSport</span> <span class="o">=</span> <span class="nx">sport</span><span class="o">?</span> <span class="nx">sport</span><span class="o">:</span> <span class="s2">&quot;Un&quot;</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">isAvailable</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="nx">available</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">playerAge</span> <span class="o">&lt;</span> <span class="nx">retirementAge …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/cookie.html">Read More</a></p>
+    <p class="readmore"><a href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -124,7 +96,7 @@
     <a class="page-number" href="/index6.html">6</a>
     <a class="page-number" href="/index7.html">7</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index6.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -147,12 +119,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -170,27 +144,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

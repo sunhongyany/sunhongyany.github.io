@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,93 +35,89 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/jie-kou-yu-diao-yong-shun-xu.html">接口与调用顺序</a></h1>
-    <div class="post-meta">2017-08-27</div>
+    <h1 class="post-title"><a href="/websocket.html">WebSocket</a></h1>
+    <div class="post-meta">2017-09-07</div>
+    <div class="post-content">
+        <p>WebSocket是HTML5规范中新提出的客户端-服务器通讯协议，协议本身使用新的ws://URL格式。</p>
+<p>WebSocket 是独立的、创建在 TCP 上的协议，和 HTTP 的唯一关联是使用 HTTP 协议的101状态码进行协议切换，使用的 TCP 端口是80，可以用于绕过大多数防火墙的限制。</p>
+<p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。</p>
+<p>目前常见的浏览器如 Chrome、IE、Firefox、Safari、Opera 等都支持 WebSocket，同时需要服务端程序支持 WebSocket。</p>
+<ol>
+<li>Tornado的WebSocket模块</li>
+</ol>
+<p>Tornado提供支持WebSocket的模块是tornado.websocket，其中提供了一个WebSocketHandler类用来处理通讯。</p>
+<p>WebSocketHandler.open()</p>
+<p>当一个WebSocket连接建立后被调用。</p>
+<p>WebSocketHandler.on_message(message)</p>
+<p>当客户端发送消息message过来时被调用，注意此方法必须被重写。</p>
+<p>WebSocketHandler.on_close()</p>
+<p>当WebSocket连接关闭后被调用。</p>
+<p>WebSocketHandler.write_message(message …</p>
+    </div>
+    <p class="readmore"><a href="/websocket.html">Read More</a></p>
+</div>
+<div class="post">
+    <h1 class="post-title"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a></h1>
+    <div class="post-meta">2017-09-07</div>
     <div class="post-content">
         <ol>
-<li>initialize()</li>
+<li>作为函数调用</li>
 </ol>
-<p>对应每个请求的处理类Handler在构造一个实例后首先执行initialize()方法。路由映射中的第三个字典型参数会作为该方法的命名参数传递，如：</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ProfileHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
-
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Application</span><span class="p">([</span>
-    <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/user/(.*)&#39;</span><span class="p">,</span> <span class="n">ProfileHandler</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)),</span>
-    <span class="p">])</span>
+<p>如果函数不是以方法，构造函数或通过apply(),call()调用，那么它只能作为一个函数被调用：</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">add</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">sub</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">};</span>
+<span class="nx">sub</span><span class="p">();</span>
 </pre></div>
 
 
+<p>当以这种模式调用时，this被绑定在全局对象上。</p>
 <ol>
-<li>prepare()</li>
+<li>作为方法被调用</li>
 </ol>
-<p>预处理，即在执行对应请求方式的HTTP方法（如get、post等）前先执行，注意：不论以何种HTTP方式请求，都会执行prepare()方法。</p>
-<ol>
-<li>
-<p>HTTP方法</p>
-<p>get      请求指定的页面信息，并返回实体主体。</p>
-<p>head     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</p>
-<p>post     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。</p>
-<p>POST请求可能会导致新的资源的建立和/或已有资源的修改 …</p></li></ol>
+<p>方法是作为对象属性的函数。对于方法来说，this被绑定在方法被调用时所在的对象上。</p>
+<div class="highlight"><pre><span></span><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">title</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kd">function</span> <span class="nx">testF</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testF</span><span class="p">());</span>
+<span class="kd">var</span> <span class="nx">testFCopy</span> <span class="o">=</span> <span class="nx">testF</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testFCopy</span><span class="p">());</span>
+<span class="kd">var</span> <span class="nx">testObj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">testObjFunc</span><span class="o">:</span> <span class="nx">testF</span>
+<span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testObj …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/jie-kou-yu-diao-yong-shun-xu.html">Read More</a></p>
+    <p class="readmore"><a href="/jszhong-ge-chong-diao-yong-fang-shi.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/input.html">Input</a></h1>
-    <div class="post-meta">2017-08-26</div>
+    <h1 class="post-title"><a href="/tornadoyi-bu.html">Tornado异步</a></h1>
+    <div class="post-meta">2017-09-06</div>
     <div class="post-content">
-        <p>利用HTTP协议向服务器传参有几种途径？</p>
+        <p>因为epoll主要是用来解决网络IO的并发问题，所以Tornado的异步编程也主要体现在网络IO的异步上，即异步Web请求。</p>
 <ol>
-<li>查询字符串（query string)，形如key1=value1&amp;key2=value2；</li>
-<li>请求体（body）中发送的数据，比如表单数据、json、xml；</li>
-<li>提取uri的特定部分，如/blogs/2016/09/0001，可以在服务器端的路由中用正则表达式截取；</li>
-<li>在http报文的头（header）中增加自定义字段，如X-XSRFToken=itcast。</li>
+<li>tornado.httpclient.AsyncHTTPClient</li>
 </ol>
-<p>我们现在来看下tornado中为我们提供了哪些方法来获取请求的信息。</p>
-<ol>
-<li>
-<p>获取查询字符串参数</p>
-<p>get_query_argument(name, default=_ARG_DEFAULT, strip=True)</p>
-</li>
-</ol>
-<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，如果出现多个同名参数，则返回最后一个的值。</p>
-<p>&emsp;&emsp;default为设值未传name参数时返回的默认值，如若default也未设置，则会抛出tornado.web.MissingArgumentError异常。</p>
-<p>&emsp;&emsp;strip表示是否过滤掉左右两边的空白字符，默认为过滤。</p>
-<div class="highlight"><pre><span></span>get_query_arguments(name, strip=True)
-</pre></div>
-
-
-<p>&emsp;&emsp;从请求的查询字符串中返回指定参数name的值，注意返回的是list列表 …</p>
+<p>Tornado提供了一个异步Web请求客户端tornado.httpclient.AsyncHTTPClient用来进行异步Web请求。</p>
+<p>fetch(request, callback=None)</p>
+<p>用于执行一个web请求request，并异步返回一个tornado.httpclient.HTTPResponse响应。</p>
+<p>request可以是一个url，也可以是一个tornado.httpclient.HTTPRequest对象。如果是url，fetch会自己构造一个HTTPRequest对象。</p>
+<p>HTTPRequest</p>
+<p>HTTP请求类，HTTPRequest的构造函数可以接收众多构造参数，最常用的如下：</p>
+<ul>
+<li>url (string) – 要访问的url，此参数必传，除此之外均为可选参数</li>
+<li>method (string) – HTTP访问方式，如“GET”或“POST”，默认为GET方式</li>
+<li>headers (HTTPHeaders or dict) – 附加的HTTP协议头</li>
+<li>body – HTTP请求的请求体</li>
+</ul>
+<p>HTTPResponse</p>
+<p>HTTP响应类，其常用属性如下 …</p>
     </div>
-    <p class="readmore"><a href="/input.html">Read More</a></p>
-</div>
-<div class="post">
-    <h1 class="post-title"><a href="/nei-zhi-lei-xing-fang-fa.html">内置类型方法</a></h1>
-    <div class="post-meta">2017-08-26</div>
-    <div class="post-content">
-        <p>内置类型的方法基本上不会调用子类覆盖的方法。例如，dict的子类覆盖的__getitem__()不会被内置类</p>
-<p>型的get()调用内置类型dict的__init__,__update__方法会忽略我们覆盖的__setitem__方法。</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">90</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="o">...</span><span class="p">:</span>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="o">...</span><span class="p">:</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">91</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">92</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">93</span><span class="p">]:</span> <span class="n">d</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">93</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;one&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">94</span><span class="p">]:</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;two&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">95</span><span class="p">]:</span> <span class="n">d</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">95</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;one …</span></pre></div>
-    </div>
-    <p class="readmore"><a href="/nei-zhi-lei-xing-fang-fa.html">Read More</a></p>
+    <p class="readmore"><a href="/tornadoyi-bu.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -134,7 +130,7 @@
     <a class="page-number" href="/index7.html">7</a>
     <a class="page-number" href="/index8.html">8</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index7.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -157,12 +153,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -180,27 +178,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

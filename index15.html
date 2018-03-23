@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,76 +35,75 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/sheng-cheng-yi-ge-huo-duo-ge-htmlbiao-qian.html">生成一个或多个HTML标签</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html">变量，元祖相对不可变性</a></h1>
+    <div class="post-meta">2017-06-25</div>
     <div class="post-content">
-        <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">content</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">attrs</span><span class="p">):</span>
-
-   <span class="o">...</span><span class="p">:</span>     <span class="s2">&quot;&quot;&quot;生成一个或多个HTML标签&quot;&quot;&quot;</span>
-
-   <span class="o">...</span><span class="p">:</span>     <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-
-   <span class="o">...</span><span class="p">:</span>         <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span>
-
-   <span class="o">...</span><span class="p">:</span>     <span class="k">if</span> <span class="n">attrs</span><span class="p">:</span>
-
-   <span class="o">...</span><span class="p">:</span>         <span class="n">attr_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">%s</span><span class="s1">=&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span>
-                    <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-
-   <span class="o">...</span><span class="p">:</span>     <span class="k">else</span><span class="p">:</span>
-
-   <span class="o">...</span><span class="p">:</span>         <span class="n">attr_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-
-   <span class="o">...</span><span class="p">:</span>     <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
-
-   <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&lt;</span><span class="si">%s%s</span><span class="s1">&gt;</span><span class="si">%s</span><span class="s1">&lt;/</span><span class="si">%s</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span>
-                    <span class="n">name</span><span class="p">,</span> <span class="n">attr_str</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">c …</span></pre></div>
+        <p>变量是对象的标签，每个变量都有标识，类型和值。变量一旦创建，它的标识不会变，标识可以理解为</p>
+<p>对象在内存地址中的地址，is是比较两个对象的标识，id()函数返回对象标识的整数表示。==运算符比</p>
+<p>较的是两个对象的值。is比==快，因为它不能重载，所以python不用寻找并调用特殊方法，而是直接比</p>
+<p>较两个整数的的ID，而a == b是语法糖，等同于a.<strong>eq</strong>(b).</p>
+<p>元祖的相对不可变性</p>
+<p>元祖的不可变性是指tuple数据结构的物理内容（即保存的引用）不可变，与引用的对象无关。而str，</p>
+<p>bytes和array.array等单一类型序列是扁平的，它们保存的不是引用，而是在连续的内存中，保存数据本</p>
+<p>身（字符，字节和数字）。</p>
     </div>
-    <p class="readmore"><a href="/sheng-cheng-yi-ge-huo-duo-ge-htmlbiao-qian.html">Read More</a></p>
+    <p class="readmore"><a href="/bian-liang-yuan-zu-xiang-dui-bu-ke-bian-xing.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/xu-lie-zeng-liang-fu-zhi.html">序列增量赋值</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/functoolslru_cache.html">functools.lru_cache</a></h1>
+    <div class="post-meta">2017-06-25</div>
     <div class="post-content">
-        <p>&emsp;&emsp;+=背后的特殊方法是__iadd__(用于就地加法)，如果一个类没有这个方法，就会调用__add__。</p>
-<p>a += b如果a没有实现__iadd__方法，a += b 就和a = a + b一样。*=和+=用法一样。</p>
-<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">]:</span> <span class="n">l1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+        <p>functools.lru_cache实现了备忘功能，他把耗时的函数结果保存起来，避免传入相同的参数时重复计</p>
+<p>算。</p>
+<p>斐波拉契数列很耗时，此时用functools.lru_cache最好。</p>
+<p>首先定义一个计时器。然后计算没有用functools.lru_cache的用时的耗时，最后计算用了</p>
+<p>functools.lru_cache的耗时。</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">77</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">time</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="nb">id</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="mi">4537296648</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">78</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">functools</span>
 
-    <span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="n">l1</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="n">l1</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="nb">id</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="mi">4537296648</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">23 …</span></pre></div>
+<span class="n">In</span> <span class="p">[</span><span class="mi">79</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="nd">@functools.wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">clock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+    <span class="o">...</span><span class="p">:</span>             <span class="n">arg_str</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/xu-lie-zeng-liang-fu-zhi.html">Read More</a></p>
+    <p class="readmore"><a href="/functoolslru_cache.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/you-guan-dict.html">有关dict</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/gitji-chu.html">git基础</a></h1>
+    <div class="post-meta">2017-06-25</div>
     <div class="post-content">
-        <p>1.键必须是可散列的。</p>
-<p>&emsp;&emsp;一个可散列的对象必须满足：</p>
-<p>&emsp;&emsp;（1）支持hash()函数，并且通过hash()所得到的散列值是不变的。</p>
-<p>&emsp;&emsp;（2）支持__eq__()方法来检测相等性。</p>
-<p>&emsp;&emsp;（3）若a == b为真，则hash（a）== hash（b）也为真。</p>
-<p>&emsp;&emsp;所有由用户自定义的对象默认都是可散列的。因为她们的散列值由id()获取，而且她们都不相等。</p>
-<p>2.字典在内存上开销巨大。</p>
-<p>&emsp;&emsp;如果数据不过大，不要空间优化，因为优化往往是可维护的对立面。</p>
-<p>3.键查询很快。</p>
-<p>4.键的次序取决于添加顺序。</p>
-<p>5.往字典里添加新键可能会改变已有键的顺序。</p>
-<p>&emsp;&emsp;迭代一个字典的所有键过程中同时对字典的键进行修改，那么这个循环很可能会跳过一些键，甚至</p>
-<p>跳过那些字典中已有的键。</p>
-<p>&emsp;&emsp;在python3中.keys(),.items(),.values()返回的都是字典视图，可以实时反馈字典的变化。</p>
+        <h3>获取git仓库</h3>
+<p>有两种取得git仓库的方法：</p>
+<ol>
+<li>
+<p>在现有目录中初始化仓库  git init</p>
+</li>
+<li>
+<p>克隆现有的仓库  git clone [url]</p>
+</li>
+</ol>
+<h3>检查当前文件的状态</h3>
+<p>git status</p>
+<h3>跟踪新文件</h3>
+<p>git add <new_file></p>
+<h3>暂存已修改的文件</h3>
+<p>git add <modified_file></p>
+<p>git add 是个多功能命令，可以用它开始跟踪新文件，或者把已跟踪的文件放在暂存区，还能用于合并时</p>
+<p>把有冲突的文件标记为已解决状态。</p>
+<h3>忽略文件</h3>
+<p>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。通常都是些自动</p>
+<p>生成的文 件，比如日志文件，或者编译过程中创建的临时文件等。在这种情况下，我们可以创建一个名</p>
+<p>为 .gitignore 的文件，列出要忽略的文件模式。</p>
+<p>文件 .gitignore 的格式规范如下:</p>
+<p>• 所有空行或者以 # 开头的行都会被 Git 忽略。 </p>
+<p>• 可以使用标准的 glob …</p>
     </div>
-    <p class="readmore"><a href="/you-guan-dict.html">Read More</a></p>
+    <p class="readmore"><a href="/gitji-chu.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -116,7 +115,8 @@
     <span class="page-number current">15</span>
     <a class="page-number" href="/index16.html">16</a>
     <a class="page-number" href="/index17.html">17</a>
-    <a class="page-number" href="/index18.html">18</a>
+    <span class="space">...</span>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index16.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -139,12 +139,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -162,27 +164,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

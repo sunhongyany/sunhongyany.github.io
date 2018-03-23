@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,66 +35,116 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/formatyong-fa.html">format用法</a></h1>
-    <div class="post-meta">2017-06-03</div>
+    <h1 class="post-title"><a href="/__all__de-zuo-yong.html">__all__的作用</a></h1>
+    <div class="post-meta">2017-06-24</div>
     <div class="post-content">
-        <p>1.通过位置获取参数</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; &#39;{0}, {1}, {2}&#39;.format(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
-&#39;a, b, c&#39;
-&gt;&gt;&gt; &#39;{}, {}, {}&#39;.format(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)  # 3.1+ only
-&#39;a, b, c&#39;
-&gt;&gt;&gt; &#39;{2}, {1}, {0}&#39;.format(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
-&#39;c, b, a&#39;
-&gt;&gt;&gt; &#39;{2}, {1}, {0}&#39;.format(*&#39;abc&#39;)      # unpacking argument sequence
-&#39;c, b, a&#39;
-&gt;&gt;&gt; &#39;{0}{1}{0}&#39;.format(&#39;abra&#39;, &#39;cad&#39;)   # arguments …</pre></div>
+        <p>__all__是一个string元素组成的list变量，定义了当你使用 from <module> import * 导入某个模块的时候能导出的符</p>
+<p>号（这里代表变量，函数，类等）。</p>
+<p>举个例子，在all_test.py中，我们明确导出符号a，b。</p>
+<div class="highlight"><pre><span></span>    <span class="mi">1</span>   <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+      <span class="mi">1</span>
+      <span class="mi">2</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="mi">3</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="mi">4</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+
+
+<p>在ipython中我们输入：</p>
+<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">all_test</span> <span class="kn">import</span> <span class="o">*</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="mi">1</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="mi">2</span>
+
+    <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="o">---------------------------------------------------------------------------</span>
+    <span class="ne">NameError</span>                                 <span class="n">Traceback …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/formatyong-fa.html">Read More</a></p>
+    <p class="readmore"><a href="/__all__de-zuo-yong.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/pythonzhong-de-nei-zhi-xu-lie-yi.html">python中的内置序列（一）</a></h1>
-    <div class="post-meta">2017-06-03</div>
+    <h1 class="post-title"><a href="/bi-bao.html">闭包</a></h1>
+    <div class="post-meta">2017-06-24</div>
     <div class="post-content">
-        <p>python的序列按存放的数据类型是否相同，可分为：</p>
-<p>容器序列：</p>
-<ul>
-<li>tuple，list，collections.queue这些序列可以存放的不同数据类型。</li>
-</ul>
-<p>扁平序列：</p>
-<ul>
-<li>str，bytes，bytearry，memoryview和array.array这些序列只能容纳一种类型。</li>
-</ul>
-<p>容器序列存放的是它们所包含的任意类型对象的引用，而扁平序列存放的是值不是引用。扁平序列是一</p>
-<p>段连续的内存空间，扁平序列更加紧凑，但他只能存放诸如字符，数值和字节这种基础类型。</p>
-<p>还可按照能否被修改来分类：</p>
-<p>可变序列：</p>
-<ul>
-<li>list，bytearray，array.array，collections.queue和memoryview。</li>
-</ul>
-<p>不可变序列：</p>
-<ul>
-<li>tuple，str和bytes。</li>
-</ul>
+        <p>闭包指延伸了作用域的函数，其中包含函数体中的引用，但是不在定义体中定义的非全局变量。</p>
+<p>通过以下例子理解一下。</p>
+<p>我们定义一个不断增加系列值的均值。就像下面这样。</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="mf">10.0</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="mf">10.5</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avg</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="mf">11.0</span>
+</pre></div>
+
+
+<p>可以按如下方式实现：</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Averager</span><span class="p">():</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>         <span class="k">return</span> <span class="n">total</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">avg</span> <span class="o">=</span> <span class="n">Averager</span><span class="p">()</span>
+
+<span class="n">In …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/pythonzhong-de-nei-zhi-xu-lie-yi.html">Read More</a></p>
+    <p class="readmore"><a href="/bi-bao.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/shell-kuai-jie-jian.html">shell 快捷键</a></h1>
-    <div class="post-meta">2017-05-23</div>
+    <h1 class="post-title"><a href="/chang-jian-de-ying-she-fang-fa.html">常见的映射方法</a></h1>
+    <div class="post-meta">2017-06-24</div>
     <div class="post-content">
-        <p>ctrl+a 跳到所在行的开头</p>
-<p>ctrl+e 跳到光标所在行的行尾</p>
-<p>ctrl+l 清屏</p>
-<p>ctrl+u 清除这一行中光标前的内容</p>
-<p>ctrl+c 杀死正在运行的程序</p>
-<p>ctrl+d 退出当前shell </p>
-<p>ctrl+z 将正在运行的程序变成挂起的后台进程，fg恢复</p>
-<p>ctrl+w 删除光标前的单词</p>
-<p>ctrl+k 清除这一行中光标后的内容</p>
-<p>ctrl+t 交换光标前的最后两个字符</p>
-<p>esc+t 交换光标前的最后两个单词</p>
+        <p>常见的映射类型有dict，defaultdict，OrderDict。</p>
+<p>dict中有个setdefault方法，用于处理找不到的键。</p>
+<div class="highlight"><pre><span></span>    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">k</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]}</span>
+</pre></div>
+
+
+<p>defaultdict处理找不到键的一个选择。</p>
+<div class="highlight"><pre><span></span>    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]})</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">]</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>用来生成默认值的可调用对象存放在default_factory这个实例属性中。</p>
+<div class="highlight"><pre><span></span>&gt;&gt;&gt; d.default_factory()
+&gt;&gt;&gt; []
+</pre></div>
+
+
+<p>collections.defaultdict里的defautl_factory只会在__getitem__里被调用，在其他方法里完全不发挥</p>
+<p>作用。</p>
+<div class="highlight"><pre><span></span>d = defaultdict(list)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>    <span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;k1 …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/shell-kuai-jie-jian.html">Read More</a></p>
+    <p class="readmore"><a href="/chang-jian-de-ying-she-fang-fa.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -105,6 +155,9 @@
     <a class="page-number" href="/index16.html">16</a>
     <span class="page-number current">17</span>
     <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index19.html">19</a>
+    <span class="space">...</span>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index18.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -127,12 +180,14 @@
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -150,27 +205,27 @@
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>

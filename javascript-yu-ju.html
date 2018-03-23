@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="description" content="Stay hungry, stay foolish" />
+    <title>
+JavaScript 语句 | 梦与想    </title>
+    <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/theme/fav.ico" />
+</head>
+
+<body>
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
+        </div>
+        <div id="nav-menu">
+            <a href="/"><i class="fa fa-home"> 首页</i></a>
+            <a href="/archives.html"><i class="fa fa-archive"> 文章归档</i></a>
+        </div>
+    </div>
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
+<div class="post">
+    <h1 class="post-title">JavaScript 语句</h1>
+    <div class="post-meta"> 9 12, 2017
+    <span> | </span> <span>学习笔记</span>
+    </div>
+    <div class="post-content">
+        <ol>
+<li>label语句使用</li>
+</ol>
+<p>label语句可以在代码中添加标签，以便将来使用。以下是label语句的语法：label: statement 下面是一个示例：start: for (var i=0; i &lt; count; i++) {     alert(i);  } 这个例子中定义的start标签可以在将来由break或continue语句引用。加标签的语句一般都要与for语句等循环语句配合使用。</p>
+<ol>
+<li>switch语句</li>
+</ol>
+<p>使用表达式作为case值可以实现下列操作：</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+<span class="k">switch</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">num</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">:</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Less than 0.&quot;</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nx">num</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">num</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">:</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Between 0 and 10.&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nx">num</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="nx">num</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="o">:</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Between 10 and 20.&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;More than 20.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这个例子首先在switch语句外面声明了变量num。而之所以给switch语句传递表达式true，是因为每个case值都可以返回一个布尔值。这样，每个case按照顺序被求值，直到找到匹配的值或者遇到default语句为止（这正是这个例子的最终结果）。switch语句在比较值时使用的是全等操作符，因此不会发生类型转换（例如，字符串"10"不等于数值10）。</p>
+
+        <div class="tags">
+        <a href="/tag/javascript.html">JavaScript</a>
+        </div>
+
+
+    </div>
+</div>
+        </div></div>
+        <div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar">
+<div class="widget">
+    <form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form">
+        <input type="text" name="q" maxlength="20" placeholder="Search"/>
+        <input type="hidden" name="sitesearch" value=""/>
+    </form>
+</div><div class="widget">
+    <div class="widget-title">
+        <i class="fa fa-folder-o"> Categories</i>
+    </div>
+    <ul class="category-list">
+        <li class="category-list-item"><a class="category-list-link" href="/category/xue-xi-bi-ji.html">学习笔记</a></li>
+    </ul>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
+    <div class="tagcloud">
+    <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
+    <a href="/tag/python.html" style="font-size: 12px">python</a>
+    <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
+    <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
+    <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
+    <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    </div>
+</div><div class="widget">
+    <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
+    <ul class="post-list">
+        <li class="post-list-item">
+        <a class="post-list-link" href="/asyncio.html">asyncio</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/property.html">property</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/etag.html">ETag</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
+        </li>
+        <li class="post-list-item">
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
+        </li>
+    </ul>
+</div>        </div></div>
+        <div class="pure-u-1 pure-u-md-3-4">
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+    </div>
+
+<a id="rocket" href="#top" class="show"></a>
+<script type="text/javascript" src="/theme/js/totop.js" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script>
+<script type="text/javascript" src="/theme/js/fancybox.js" async></script>
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css" />
+
+</body>

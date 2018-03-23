@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta name="description" content="Stay hungry, stay foolish" />
     <title>
-    日迹    </title>
+    梦与想    </title>
     <link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/theme/css/pygment.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css" />
@@ -24,8 +24,8 @@
 <div class="body_container">
     <div id="header">
         <div class="site-name">
-            <a id="logo" href="/."> 日迹 </a>
-            <p class="description"> Stay hungry, stay foolish </p>
+            <a id="logo" href="/."> 梦与想 </a>
+            <span class="description"> Stay hungry, stay foolish </span>
         </div>
         <div id="nav-menu">
             <a href="/"><i class="fa fa-home"> 首页</i></a>
@@ -35,86 +35,54 @@
     <div id="layout" class="pure-g">
         <div class="pure-u-1 pure-u-md-3-4"><div class="content_container">
 <div class="post">
-    <h1 class="post-title"><a href="/dui-xu-lie-shi-yong-huo.html">对序列使用+或*</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/delhe-la-ji-hui-shou.html">del和垃圾回收</a></h1>
+    <div class="post-meta">2017-06-28</div>
     <div class="post-content">
-        <div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;-&#39;</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">3</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">l</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="p">[[</span><span class="s1">&#39;-&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">]]</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">l</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-</pre></div>
-
-
-<p>出现这种现象的原因是[['-']] * 3创建的['-']都是指向同一个列表的引用。</p>
-<p>可以使用列表推导式达到其他列表不改变的目的。</p>
-<div class="highlight"><pre><span></span>    <span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;-&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">l</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="p">[[</span><span class="s1">&#39;-&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">]]</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">l</span>
-    <span class="n">Out …</span></pre></div>
+        <p>del语句删除名称而不是对象，del命令可能会导致对象被当作垃圾回收，但仅当删除的变量保存的是引</p>
+<p>用对象的最后一个引用，或者无法得到对象时，重新绑定也可能导致对象的引用归零，导致对象被销</p>
+<p>毁。</p>
+<p>如果两个对象相互引用，当它们的引用只存在二者之间时，垃圾回收程序会判定它们都无法获取，进而</p>
+<p>将它们消灭。</p>
+<p>在Cpython中垃圾回收使用的主要算法是引用计数，实际上每个对象都会统计有多少个引用指向自己，</p>
+<p>当引用计数归零时，对象立即被销毁，Cpython会在对象上调用__del__方法（如果定义了），然后释放</p>
+<p>分配给对象的内存。Cpython2.0增加了分代回收方法，用于检测引用循环中涉及的对象组。</p>
     </div>
-    <p class="readmore"><a href="/dui-xu-lie-shi-yong-huo.html">Read More</a></p>
+    <p class="readmore"><a href="/delhe-la-ji-hui-shou.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/itemgetteryu-attrgetter.html">itemgetter与attrgetter</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/ruo-yin-yong.html">弱引用</a></h1>
+    <div class="post-meta">2017-06-28</div>
     <div class="post-content">
-        <p>itemgetter的常见用途：根据元祖的某个字段给元祖列表排序。</p>
-<p>'''python
-    In [1]: from operator import itemgetter</p>
-<div class="highlight"><pre><span></span>In [2]: args = [(2, &#39;b&#39;, &#39;123&#39;), (1, &quot;a&quot;, &quot;123&quot;), (3, &quot;c&quot;, &quot;345&quot;)]
-
-In [3]: for i in sorted(args, key=itemgetter(1)):
-
-...:     print(i)
-
-...:
-
-(1, &#39;a&#39;, &#39;123&#39;)
-
-(2, &#39;b&#39;, &#39;123&#39;)
-
-(3, &#39;c&#39;, &#39;345&#39;)
-</pre></div>
-
-
-<p>'''</p>
-<p>如果把多个参数传给itemgetter，他构建的函数会返回提取的值构成元祖。</p>
-<p>'''python
-    In [86]: d = itemgetter(1 …</p>
+        <p>弱引用不会增加对象的引用数量，引用的目标对象称为所指对象，弱引用在缓存应用中很有用，因为我</p>
+<p>们不想仅因为被缓存引用着而始终保存着缓存对象。</p>
+<p>基本的list和dict实例不会做为弱引用的目标，但他们的子类可以，set可以作为弱引用所指对象，int和</p>
+<p>tuple不可以作为弱引用的所指对象，它们的子类也不可以。</p>
     </div>
-    <p class="readmore"><a href="/itemgetteryu-attrgetter.html">Read More</a></p>
+    <p class="readmore"><a href="/ruo-yin-yong.html">Read More</a></p>
 </div>
 <div class="post">
-    <h1 class="post-title"><a href="/qie-pian.html">切片</a></h1>
-    <div class="post-meta">2017-06-24</div>
+    <h1 class="post-title"><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">使用可变类型作为参数的默认值</a></h1>
+    <div class="post-meta">2017-06-28</div>
     <div class="post-content">
-        <p>给切片赋值</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; l = list(range(10))
-&gt;&gt;&gt; l
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; l[2:5] = [&#39;a&#39;]
-&gt;&gt;&gt; l
-[0, 1, &#39;a&#39;, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; l[3:6:2] = [&#39;b&#39;, &#39;c&#39;]
-&gt;&gt;&gt; l
-[0, 1, &#39;a&#39;, &#39;b&#39;, 6, &#39;c&#39;, 8, 9]
-</pre></div>
+        <div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">115</span><span class="p">]:</span> <span class="k">class</span> <span class="nc">Bus</span><span class="p">():</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">passengers</span><span class="o">=</span><span class="p">[]):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span> <span class="o">=</span> <span class="n">passengers</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">pick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+     <span class="o">...</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+     <span class="o">...</span><span class="p">:</span>         <span class="bp">self</span><span class="o">.</span><span class="n">passengers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+     <span class="o">...</span><span class="p">:</span>
 
+<span class="n">In</span> <span class="p">[</span><span class="mi">116</span><span class="p">]:</span> <span class="n">bus1</span> <span class="o">=</span> <span class="n">Bus</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
 
-<p>但是赋值对象是切片时，赋值语句右面必须是个可迭代对象。</p>
-<div class="highlight"><pre><span></span>&gt;&gt;&gt; l[3:5] = 3 …</pre></div>
+<span class="n">In</span> <span class="p">[</span><span class="mi">117</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">pick</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="n">bus1</span><span class="o">.</span><span class="n">passengers</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">118</span><span class="p">]:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">119</span><span class="p">]:</span> <span class="n">bus1 …</span></pre></div>
     </div>
-    <p class="readmore"><a href="/qie-pian.html">Read More</a></p>
+    <p class="readmore"><a href="/shi-yong-ke-bian-lei-xing-zuo-wei-can-shu-de-mo-ren-zhi.html">Read More</a></p>
 </div>
 
 <div class="page-navigator">
@@ -127,7 +95,7 @@ In [3]: for i in sorted(args, key=itemgetter(1)):
     <a class="page-number" href="/index15.html">15</a>
     <a class="page-number" href="/index16.html">16</a>
     <span class="space">...</span>
-    <a class="page-number" href="/index18.html">18</a>
+    <a class="page-number" href="/index22.html">22</a>
     <a class="extend next" rel="next" href="/index15.html">Next</a></nav>
 </div class="page-navigator">
 
@@ -150,12 +118,14 @@ In [3]: for i in sorted(args, key=itemgetter(1)):
     <div class="widget-title"><i class="fa fa-star-o"> Tags</i></div>
     <div class="tagcloud">
     <a href="/tag/pelican.html" style="font-size: 12px">Pelican</a>
-    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
+    <a href="/tag/sqlalchemy.html" style="font-size: 12px">SQLAlchemy</a>
     <a href="/tag/python.html" style="font-size: 12px">python</a>
     <a href="/tag/javascript.html" style="font-size: 12px">JavaScript</a>
+    <a href="/tag/cao-zuo-xi-tong.html" style="font-size: 12px">操作系统</a>
     <a href="/tag/tornado.html" style="font-size: 12px">Tornado</a>
     <a href="/tag/wang-luo.html" style="font-size: 12px">网络</a>
     <a href="/tag/git.html" style="font-size: 12px">Git</a>
+    <a href="/tag/shell.html" style="font-size: 12px">Shell</a>
     </div>
 </div><div class="widget">
     <div class="widget-title"><i class="fa fa-file-o"> Recent</i></div>
@@ -173,27 +143,27 @@ In [3]: for i in sorted(args, key=itemgetter(1)):
         <a class="post-list-link" href="/urllibzhong-de-quotehan-shu.html">urllib中的quote函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/shi-li-shu-xing-he-yuan-xing-shu-xing.html">实例属性和原型属性</a>
+        <a class="post-list-link" href="/la-ji-shou-ji.html">垃圾收集</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/websocket.html">WebSocket</a>
+        <a class="post-list-link" href="/yin-yong-lei-xing.html">引用类型</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/jszhong-ge-chong-diao-yong-fang-shi.html">js中各种调用方式</a>
+        <a class="post-list-link" href="/zhi-xing-huan-jing-ji-zuo-yong-yu.html">执行环境及作用域</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/tornadoyi-bu.html">Tornado异步</a>
+        <a class="post-list-link" href="/javascript-bian-liang.html">JavaScript 变量</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/argumentscan-shu.html">arguments参数</a>
+        <a class="post-list-link" href="/javascript-han-shu.html">JavaScript 函数</a>
         </li>
         <li class="post-list-item">
-        <a class="post-list-link" href="/thiscan-shu.html">this参数</a>
+        <a class="post-list-link" href="/javascript-yu-ju.html">JavaScript 语句</a>
         </li>
     </ul>
 </div>        </div></div>
         <div class="pure-u-1 pure-u-md-3-4">
-<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">日迹.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
+<div id="footer">Copyright © 2018 <a href="/." rel="nofollow">梦与想.</a> Powered by <a rel="nofollow" target="_blank" href="https://getpelican.com/">Pelican</a> and <a rel="nofollow", target="_blank", href="https://github.com/wormtooth/maupassant-pelican">maupassant</a>.</div>        </div>
     </div>
 
 <a id="rocket" href="#top" class="show"></a>
